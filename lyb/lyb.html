@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单的留言板</title>
+		<script type="text/javascript" src="../js/index2.js"></script>
+	</head>
+	<body>
+		<h1>简单的评论/留言板</h1>
+		<textarea id="demo" cols="50" rows="10"></textarea><br/><br/>
+		<input type="button" value="保存" οnclick="saveStorage('demo');" /> 
+		<input type="button" value="清空" οnclick="clearStorage('msg');" /> 
+		<input type="button" value="读取" οnclick="loadStorage('msg');" />
+		<hr color="red">
+		<p id="msg"></p>
+	</body>
+</html>
