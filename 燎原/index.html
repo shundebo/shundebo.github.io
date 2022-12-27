@@ -3,42 +3,16 @@
         <meta charset = "utf-8" />
 
         <style>
-            <script 
-// 加载的客户端脚本
-    src="https://utteranc.es/client.js"
-// repo 就是访问的仓库，格式 用户名/仓库名
-// 个人就是 repo="wsafight/personBlog"
-        repo="[ENTER REPO HERE]"
- 
-// 选定的当前blog 与 issue 之间的关系
-// 个人使用的是不会自动创建的 issue-number，每个issue都有自己的number。该选项是使用特定的issue
-        issue-term="pathname"
-// 主题为  github-light 还有其他主题可以选择        
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
         </style>
 
     </head>
 
     <body>
-        <div id="main">
-            <h1>留言板</h1><hr>
-            <textarea id="typing">输入文字</textarea>
-            <button id="btn">发送留言</button>
-            <div id="commend"></div>
-        </div>
+<script src="https://utteranc.es/client.js"
+        repo="shundebo/shundebo.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
     </body>
-
-    <script>
-        document.getElementById("btn").onclick=function(){send()};
-        function send(){
-            var g=new Date();
-            var value= document.getElementById("typing").value;
-            var p= document.createElement("p");
-            p.innerHTML="用户："+value+'<hr>'+g.toUTCString();
-            document.getElementById("commend").prepend(p);
-        }
-    </script>
-</html>
