@@ -1,0 +1,64 @@
+var site_tree_node = {
+  "url": "https://br-get.ml/",
+  "incount": "2",
+  "outcount": "7",
+  "title": "目录！！！...",
+  "childs": [
+  {
+    "url": "https://br-get.ml/1",
+    "incount": "1",
+    "outcount": "0",
+    "title": "fucky...",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/2",
+    "incount": "1",
+    "outcount": "1",
+    "title": "null",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/3",
+    "incount": "2",
+    "outcount": "0",
+    "title": "null",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/penguingame/",
+    "incount": "1",
+    "outcount": "0",
+    "title": "null",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/万能工具箱.exe",
+    "incount": "1",
+    "outcount": "0",
+    "title": "null",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/lyb/",
+    "incount": "1",
+    "outcount": "0",
+    "title": "null",
+    "childs": [
+        ]
+  }
+  ,{
+    "url": "https://br-get.ml/cps",
+    "incount": "1",
+    "outcount": "1",
+    "title": "CPS测试",
+    "childs": [
+        ]
+  }
+  ]
+}
