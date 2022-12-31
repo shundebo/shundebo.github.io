@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>💥</title>
+  <title>扫雷br-get</title>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -31,7 +31,7 @@
   <header>
     <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-      <a class="navbar-brand" href="#">MineSweeper</a>
+      <a class="navbar-brand" href="#">扫雷！</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
                   <ul class="list-inline float-center my-0 py-1 pr-3">
                     <li class="list-inline-item">
                       <button type="button" class="action-btn js-new-game btn btn-default btn-lg btn-block"
-                        aria-label="New game" data-intro='Reset Game!' data-step=1>
+                        aria-label="New game" data-intro='重新开始游戏!' data-step=1>
                         <span class="default-emoji"></span>
                         <span id="result" class="result-emoji"></span>
                       </button>
@@ -85,7 +85,7 @@
                 class="navbar navbar-expand-lg navbar-dark grey lighten-5 d-flex justify-content-between z-depth-1-bottom">
 
                 <div>
-                  <ul class="list-inline my-2 py-1 dark-grey-text" data-intro='Game Timer' data-step=2>
+                  <ul class="list-inline my-2 py-1 dark-grey-text" data-intro='游戏时间' data-step=2>
                     <li class="list-inline-item">
                       <i class="fas fa-clock"></i>
                     </li>
@@ -97,18 +97,18 @@
 
                 <div>
                   <ul class="list-inline my-2 py-1 dark-grey-text">
-                    <li class="list-inline-item" data-intro='Number of hidden Bombs available in game' data-step=3>
+                    <li class="list-inline-item" data-intro='游戏中可用的隐藏炸弹数量' data-step=3>
                       <i class="fas fa-bomb" aria-hidden="true"></i>
                       <span id="bombs-left">0</span>
                     </li>
-                    <li class="list-inline-item" data-intro='Number of moves taken by player' data-step=4>
+                    <li class="list-inline-item" data-intro='玩家移动的次数' data-step=4>
                       <i class="fas fa-arrows-alt" aria-hidden="true"></i>
                       <span id="moves"></span><span> Move(s)</span>
                     </li>
                     <li class="list-inline-item">
                       <button type="button" class="settings js-settings" aria-haspopup="true" aria-expanded="false"
                         data-toggle="modal" data-target="#settingModal" aria-label="Settings"
-                        data-intro='Customize game settings based on preference.' data-step=5>
+                        data-intro='根据偏好自定义游戏设置。' data-step=5>
                         <i class="fas fa-cogs"></i>
                       </button>
                     </li>
@@ -124,7 +124,7 @@
                 <div class="row">
 
                   <div class="col-12 p-1">
-                    <div id="map" role="grid" aria-label="Mine field" data-intro='Mine Field' data-step=6>
+                    <div id="map" role="grid" aria-label="雷区" data-intro='Mine Field' data-step=6>
                     </div>
                   </div>
                   <!-- Grid column -->
@@ -134,7 +134,7 @@
 
               </div>
               <!-- Card footer -->
-              <div class="card-footer text-muted text-center mt-4" data-intro='Field information based on player moves.'
+              <div class="card-footer text-muted text-center mt-4" data-intro='基于玩家移动的字段信息。'
                 data-step=7>
                 <div aria-live="assertive"><i class="fas fa-info-circle"></i> <span class="feedback"></span> </div>
               </div>
