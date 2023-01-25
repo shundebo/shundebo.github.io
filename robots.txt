@@ -1,0 +1,12 @@
+User-agent:*
+
+Allow:/cps.html
+Allow:/xn/
+Allow:/solitaire/
+Allow:/cps
+
+Disallow:/ht/
+Disallow:/video/
+Disallow:/lyb/
+Disallow:/6/
+Disallow:/src/
