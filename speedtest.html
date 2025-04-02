@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多服务器节点下载测速</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>多服务器节点下载测速</h1>
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th>服务器节点</th>
+                <th>下载速度</th>
+                <th>下载状态</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button id="startTestButton">开始测速</button>
+
+    <script>
+        // 服务器节点列表，可在后台配置
+        const serverNodes = [
+            'http://example-server1.com/testfile',
+            'http://example-server2.com/testfile',
+            'http://example-server3.com/testfile'
+        ];
+        const fileSize = 10 * 1024 * 1024; // 10MB
+        const timeout = 20 * 1000; // 20 秒
+
+        const resultTable = document.getElementById('resultTable');
+        const startTestButton = document.getElementById('startTestButton');
+
+        startTestButton.addEventListener('click', async () => {
+            startTestButton.disabled = true;
+            const tbody = resultTable.getElementsByTagName('tbody')[0];
+            tbody.innerHTML = '';
+
+            for (const server of serverNodes) {
+                const row = tbody.insertRow();
+                const cellServer = row.insertCell(0);
+                const cellSpeed = row.insertCell(1);
+                const cellStatus = row.insertCell(2);
+
+                cellServer.textContent = server;
+
+                try {
+                    const { speed, status } = await testDownloadSpeed(server);
+                    cellSpeed.textContent = speed;
+                    cellStatus.textContent = status;
+                } catch (error) {
+                    cellSpeed.textContent = 'N/A';
+                    cellStatus.textContent = '错误: ' + error.message;
+                }
+            }
+
+            startTestButton.disabled = false;
+        });
+
+        async function testDownloadSpeed(server) {
+            return new Promise((resolve, reject) => {
+                const startTime = Date.now();
+                const controller = new AbortController();
+                const signal = controller.signal;
+
+                const timeoutId = setTimeout(() => {
+                    controller.abort();
+                    resolve({ speed: 'N/A', status: '超时' });
+                }, timeout);
+
+                fetch(server, { signal })
+                   .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP 错误! 状态: ${response.status}`);
+                        }
+                        let downloaded = 0;
+                        const reader = response.body.getReader();
+
+                        return new ReadableStream({
+                            start(controller) {
+                                function read() {
+                                    reader.read().then(({ done, value }) => {
+                                        if (done) {
+                                            clearTimeout(timeoutId);
+                                            const endTime = Date.now();
+                                            const duration = (endTime - startTime) / 1000;
+                                            const speed = (fileSize / (1024 * duration)).toFixed(2) + ' KB/s';
+                                            controller.close();
+                                            resolve({ speed, status: '完成' });
+                                        } else {
+                                            downloaded += value.length;
+                                            controller.enqueue(value);
+                                            read();
+                                        }
+                                    }).catch(error => {
+                                        clearTimeout(timeoutId);
+                                        if (error.name === 'AbortError') {
+                                            resolve({ speed: 'N/A', status: '超时' });
+                                        } else {
+                                            reject(error);
+                                        }
+                                    });
+                                }
+                                read();
+                            }
+                        });
+                    })
+                   .catch(error => {
+                        clearTimeout(timeoutId);
+                        reject(error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>    
