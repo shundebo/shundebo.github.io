@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企鹅跳跃</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #87CEEB;
+            overflow: hidden;
+            font-size: 100px; /* 增大🐧的大小 */
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiOne', sans-serif; /* 强制使用微软的 Emoji 字体 */
+        }
+
+        .penguin {
+            position: absolute;
+            animation: jump 1s ease-in-out infinite;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-70px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .penguin:nth-child(odd) {
+            animation-duration: 1.2s;
+        }
+
+        .penguin:nth-child(even) {
+            animation-duration: 1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- 增加更多企鹅，并避免靠近边缘 -->
+    <div class="penguin" style="left: 10%; top: 20%;">🐧</div>
+    <div class="penguin" style="left: 12%; top: 40%;">🐧</div>
+    <div class="penguin" style="left: 14%; top: 60%;">🐧</div>
+    <div class="penguin" style="left: 18%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 22%; top: 30%;">🐧</div>
+    <div class="penguin" style="left: 24%; top: 70%;">🐧</div>
+    <div class="penguin" style="left: 26%; top: 55%;">🐧</div>
+    <div class="penguin" style="left: 30%; top: 20%;">🐧</div>
+    <div class="penguin" style="left: 34%; top: 60%;">🐧</div>
+    <div class="penguin" style="left: 36%; top: 40%;">🐧</div>
+    <div class="penguin" style="left: 38%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 42%; top: 30%;">🐧</div>
+    <div class="penguin" style="left: 44%; top: 70%;">🐧</div>
+    <div class="penguin" style="left: 46%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 50%; top: 20%;">🐧</div>
+    <div class="penguin" style="left: 52%; top: 40%;">🐧</div>
+    <div class="penguin" style="left: 54%; top: 60%;">🐧</div>
+    <div class="penguin" style="left: 58%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 62%; top: 30%;">🐧</div>
+    <div class="penguin" style="left: 64%; top: 70%;">🐧</div>
+    <div class="penguin" style="left: 66%; top: 40%;">🐧</div>
+    <div class="penguin" style="left: 70%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 72%; top: 30%;">🐧</div>
+    <div class="penguin" style="left: 74%; top: 60%;">🐧</div>
+    <div class="penguin" style="left: 78%; top: 50%;">🐧</div>
+    <div class="penguin" style="left: 82%; top: 40%;">🐧</div>
+    <div class="penguin" style="left: 84%; top: 20%;">🐧</div>
+    <div class="penguin" style="left: 86%; top: 70%;">🐧</div>
+    <div class="penguin" style="left: 88%; top: 60%;">🐧</div>
+    <div class="penguin" style="left: 90%; top: 30%;">🐧</div>
+</body>
+</html>
