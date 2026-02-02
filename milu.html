@@ -13,6 +13,7 @@
     .gender-btn{padding:18px 40px;font-size:1.2rem;margin:15px;border:none;border-radius:12px;cursor:pointer;transition:all .3s}
     #maleBtn{background:#1e90ff;color:#fff}
     #femaleBtn{background:#ff69b4;color:#fff}
+    #skipGender{background:#444;color:#fff}
     .gender-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(255,105,180,.5)}
     .progress-container{background:#222;height:8px;border-radius:4px;margin:15px 0;overflow:hidden}
     #progressFill{height:100%;width:0%;background:linear-gradient(90deg,#ff69b4,#1e90ff);transition:width .4s}
@@ -42,9 +43,10 @@
 
 <div class="container" id="genderPage">
   <h1>麋鹿xp测试by shundebo</h1>
-  <p style="font-size:1.2rem;margin:30px 0">请选择你的性别喵~</p>
-  <button class="gender-btn" id="maleBtn">男</button>
-  <button class="gender-btn" id="femaleBtn">女</button>
+  <p style="font-size:1.2rem;margin:30px 0">请选择你的性别（仅影响题库视角，不决定攻受或取向）喵~</p>
+  <button class="gender-btn" id="maleBtn">男视角</button>
+  <button class="gender-btn" id="femaleBtn">女视角</button>
+  <button class="gender-btn" id="skipGender">不选，直接开始（通用视角）</button>
 </div>
 
 <div class="container" id="quizPage" style="display:none">
@@ -344,6 +346,7 @@ function saveProgress() {
 }
 
 function renderQuestion() {
+  if (!currentQuestions) return;
   if (currentQuestion >= currentQuestions.length) currentQuestion = currentQuestions.length - 1;
   const q = currentQuestions[currentQuestion];
   document.getElementById('qText').textContent = q.q;
@@ -355,7 +358,7 @@ function renderQuestion() {
     const label = document.createElement('label');
     const isChecked = answers[currentQuestion] === idx + 1;
     label.innerHTML = `
-      <input type="radio" name="q\( {currentQuestion}" value=" \){idx+1}" ${isChecked ? 'checked' : ''}>
+      <input type="radio" name="q${currentQuestion}" value="${idx+1}" ${isChecked ? 'checked' : ''}>
       <span>${opt}</span>
     `;
     label.addEventListener('click', () => {
@@ -373,18 +376,21 @@ function renderQuestion() {
 }
 
 function updateProgress() {
+  if (!currentQuestions) return;
   const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
   document.getElementById('progressFill').style.width = progress + '%';
   document.getElementById('progressPercentage').textContent = Math.round(progress) + '%';
 }
 
 function updateButtons() {
+  if (!currentQuestions) return;
   document.getElementById('prevBtn').disabled = currentQuestion === 0;
   document.getElementById('nextBtn').style.display = currentQuestion < currentQuestions.length - 1 ? 'block' : 'none';
   document.getElementById('generateBtn').style.display = currentQuestion === currentQuestions.length - 1 ? 'block' : 'none';
 }
 
 function nextQuestion() {
+  if (!currentQuestions) return;
   if (currentQuestion < currentQuestions.length - 1) {
     currentQuestion++;
     renderQuestion();
@@ -392,6 +398,7 @@ function nextQuestion() {
 }
 
 function prevQuestion() {
+  if (!currentQuestions) return;
   if (currentQuestion > 0) {
     currentQuestion--;
     renderQuestion();
@@ -404,14 +411,15 @@ function resetTest() {
     localStorage.removeItem('milu_answers');
     localStorage.removeItem('milu_gender');
     currentQuestion = 0;
-    answers = new Array(currentQuestions.length).fill(null);
+    answers = [];
+    currentQuestions = null;
     document.getElementById('quizPage').style.display = 'none';
     document.getElementById('genderPage').style.display = 'block';
   }
 }
 
 function generateRadar() {
-  if (answers.some(a => a === null)) {
+  if (!currentQuestions || answers.some(a => a === null)) {
     alert("喵~ 还有题目没选完哦~ 请检查所有题目~");
     return;
   }
@@ -437,7 +445,7 @@ function generateRadar() {
       const maxIdx = avgScores.indexOf(maxVal);
 
       document.getElementById('resultHeader').innerHTML = 
-        `你的最强倾向：<span style="color:var(--primary)">\( {dimensions[maxIdx]}</span> ( \){maxVal}/4.0) 喵~`;
+        `你的最强倾向：<span style="color:var(--primary)">${dimensions[maxIdx]}</span> (${maxVal}/4.0) 喵~`;
 
       const detailsDiv = document.getElementById('dimensionDetails');
       detailsDiv.innerHTML = dimensions.map((dim, i) => `
@@ -493,6 +501,7 @@ function generateRadar() {
 // 性别选择
 document.getElementById('maleBtn').onclick = () => {
   currentQuestions = maleQuestions;
+  localStorage.setItem('milu_gender', 'male');
   document.getElementById('genderPage').style.display = 'none';
   document.getElementById('quizPage').style.display = 'block';
   renderQuestion();
@@ -500,6 +509,15 @@ document.getElementById('maleBtn').onclick = () => {
 
 document.getElementById('femaleBtn').onclick = () => {
   currentQuestions = femaleQuestions;
+  localStorage.setItem('milu_gender', 'female');
+  document.getElementById('genderPage').style.display = 'none';
+  document.getElementById('quizPage').style.display = 'block';
+  renderQuestion();
+};
+
+document.getElementById('skipGender').onclick = () => {
+  currentQuestions = maleQuestions; // 默认用男版视角，或改成femaleQuestions
+  localStorage.setItem('milu_gender', 'skip');
   document.getElementById('genderPage').style.display = 'none';
   document.getElementById('quizPage').style.display = 'block';
   renderQuestion();
@@ -509,6 +527,15 @@ document.getElementById('femaleBtn').onclick = () => {
 document.getElementById('nextBtn').onclick = nextQuestion;
 document.getElementById('prevBtn').onclick = prevQuestion;
 document.getElementById('generateBtn').onclick = generateRadar;
+
+// 如果之前选过性别，直接加载
+if (localStorage.getItem('milu_gender')) {
+  const gender = localStorage.getItem('milu_gender');
+  currentQuestions = gender === 'male' ? maleQuestions : femaleQuestions;
+  document.getElementById('genderPage').style.display = 'none';
+  document.getElementById('quizPage').style.display = 'block';
+  renderQuestion();
+}
 </script>
 </body>
 </html>
