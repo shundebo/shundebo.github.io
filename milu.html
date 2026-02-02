@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="麋鹿性癖雷达图测试 - 探索你的亲密关系偏好维度">
   <title>麋鹿终极性癖雷达图 - 进阶版 喵~</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {
       --primary: #ff69b4;
@@ -20,846 +20,457 @@
       --warning: #f39c12;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body { 
-      font-family: 'Segoe UI', 'SF Pro Display', system-ui, sans-serif; 
+      font-family: system-ui, -apple-system, sans-serif; 
       background: var(--bg); 
       color: var(--text); 
       margin: 0; 
-      padding: 20px;
-      line-height: 1.6;
+      padding: 15px;
       min-height: 100vh;
-      background-image: 
-        radial-gradient(circle at 20% 80%, rgba(255, 105, 180, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.05) 0%, transparent 50%);
     }
-    
+
     h1 { 
       color: var(--primary); 
-      text-shadow: 0 0 15px rgba(255, 105, 180, 0.5); 
-      font-size: 1.8rem; 
-      margin: 0 0 15px 0;
-      text-align: center;
-      position: relative;
-      padding-bottom: 10px;
+      text-shadow: 0 0 15px rgba(255,105,180,0.5); 
+      text-align: center; 
+      margin: 10px 0 20px;
+      font-size: 1.8rem;
     }
-    
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 3px;
-    }
-    
+
     .container { 
-      max-width: 650px; 
+      max-width: 720px; 
       margin: 0 auto; 
       background: var(--card-bg); 
       padding: 25px; 
       border-radius: 20px; 
       border: 1px solid var(--border); 
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
-    
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-    }
-    
-    /* 进度条优化 */
+
     .progress-container { 
       background: #222; 
-      height: 8px; 
-      border-radius: 4px; 
-      margin: 20px 0 10px 0; 
-      overflow: hidden; 
+      height: 10px; 
+      border-radius: 5px; 
+      margin: 15px 0; 
+      overflow: hidden;
     }
-    
+
     #progressFill { 
       height: 100%; 
       width: 0%; 
       background: linear-gradient(90deg, var(--primary), var(--secondary)); 
-      transition: width 0.3s ease;
-      border-radius: 4px;
-      position: relative;
+      transition: width 0.4s ease;
     }
-    
-    #progressFill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent);
-      animation: shimmer 2s infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    
+
     #progressText { 
-      font-size: 0.9rem; 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 0.95rem; 
       color: var(--text-secondary); 
-      margin-bottom: 10px; 
-      display: flex;
-      justify-content: space-between;
+      margin-bottom: 8px;
     }
-    
-    #progressPercentage {
-      font-weight: bold;
-      color: var(--primary);
-    }
-    
+
     .question { 
-      font-size: 1.2rem; 
-      min-height: 3.6rem; 
-      margin: 20px 0; 
-      font-weight: 500;
+      font-size: 1.15rem; 
+      margin: 25px 0 30px; 
       line-height: 1.5;
+      min-height: 3.5rem;
     }
-    
+
     .options { 
       display: flex; 
       flex-direction: column; 
-      gap: 12px; 
-      margin-bottom: 20px;
+      gap: 14px;
     }
-    
+
     .options label { 
-      background: #202020; 
+      background: #1e1e1e; 
       padding: 16px 20px; 
       border-radius: 12px; 
       cursor: pointer; 
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
-      border: 1px solid var(--border); 
-      position: relative;
-      overflow: hidden;
+      transition: all 0.2s; 
+      border: 1px solid var(--border);
     }
-    
+
     .options label:hover { 
-      background: #282828; 
-      border-color: var(--primary); 
-      transform: translateY(-2px); 
-      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+      background: #252525; 
+      border-color: var(--primary);
     }
-    
-    .options input { 
-      display: none; 
-    }
-    
+
+    .options input { display: none; }
+
     .options input:checked + span { 
       color: var(--primary); 
-      font-weight: bold; 
-    }
-    
-    .options input:checked + span::before { 
-      content: '✓ '; 
-    }
-    
-    .options input:checked ~ .option-indicator {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    
-    .option-indicator {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0;
-      transition: all 0.3s ease;
-      color: var(--primary);
       font-weight: bold;
-      font-size: 1.2rem;
     }
-    
+
     .nav { 
-      margin-top: 35px; 
       display: flex; 
       justify-content: space-between; 
-      align-items: center; 
+      margin-top: 35px; 
+      gap: 15px;
     }
-    
+
     button { 
-      padding: 12px 28px; 
+      flex: 1; 
+      padding: 14px; 
       font-size: 1rem; 
       border: none; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       cursor: pointer; 
-      transition: all 0.2s; 
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      transition: all 0.2s;
     }
-    
-    #prevBtn { 
-      background: #333; 
-      color: #ccc; 
-    }
-    
-    #prevBtn:disabled { 
-      opacity: 0.3; 
-      cursor: not-allowed; 
-    }
-    
+
+    #prevBtn { background: #333; color: #ccc; }
+    #nextBtn { background: var(--secondary); color: white; }
     #generateBtn { 
       background: linear-gradient(135deg, var(--primary), var(--accent)); 
-      color: #fff; 
-      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+      color: white; 
+      box-shadow: 0 4px 15px rgba(255,105,180,0.3);
     }
-    
-    #generateBtn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
-    }
-    
+
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+
     #radarContainer { 
       display: none; 
-      max-width: 800px; 
       margin: 40px auto; 
-      padding: 25px; 
-      background: var(--card-bg); 
-      border-radius: 20px; 
-      border: 1px solid #444; 
+      max-width: 800px;
     }
-    
+
     #resultHeader { 
-      font-size: 1.5rem; 
-      color: var(--secondary); 
-      margin-bottom: 15px;
-      text-align: center;
-      padding: 10px;
-      background: rgba(30, 144, 255, 0.1);
-      border-radius: 10px;
-      border-left: 4px solid var(--secondary);
-    }
-    
-    #resultDesc { 
-      color: var(--text-secondary); 
-      font-size: 1rem; 
-      margin-bottom: 20px; 
-      line-height: 1.8; 
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 10px;
-    }
-    
-    .reset-link { 
-      color: #555; 
-      text-decoration: none; 
-      font-size: 0.85rem; 
-      cursor: pointer; 
-      margin-top: 20px; 
-      display: block;
-      text-align: center;
-      transition: color 0.2s;
-    }
-    
-    .reset-link:hover { 
+      font-size: 1.6rem; 
       color: var(--primary); 
-      text-decoration: underline;
+      text-align: center; 
+      margin-bottom: 20px;
     }
-    
-    .footer-note {
-      text-align: center;
-      color: #666;
-      font-size: 0.8rem;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid var(--border);
+
+    #dimensionDetails { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+      gap: 10px; 
+      margin: 25px 0;
     }
-    
-    .dimension-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-top: 20px;
-      font-size: 0.85rem;
+
+    .dimension-item { 
+      padding: 10px; 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 8px; 
+      text-align: center; 
+      font-size: 0.9rem;
     }
-    
-    .dimension-item {
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      text-align: center;
-    }
-    
-    /* 加载动画 */
-    .loader {
-      display: none;
-      width: 40px;
-      height: 40px;
-      margin: 20px auto;
-      border: 4px solid rgba(255, 255, 255, 0.1);
-      border-top: 4px solid var(--primary);
-      border-radius: 50%;
+
+    .loader { 
+      display: none; 
+      width: 36px; 
+      height: 36px; 
+      margin: 30px auto; 
+      border: 4px solid #333; 
+      border-top: 4px solid var(--primary); 
+      border-radius: 50%; 
       animation: spin 1s linear infinite;
     }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* 响应式调整 */
-    @media (max-width: 768px) {
-      body { padding: 10px; }
-      .container { padding: 20px; border-radius: 15px; }
-      h1 { font-size: 1.5rem; }
-      .question { font-size: 1.1rem; }
-      button { padding: 10px 20px; }
-      .options label { padding: 14px 18px; }
-    }
-    
-    @media (max-width: 480px) {
-      .nav { flex-direction: column; gap: 15px; }
-      #prevBtn, #generateBtn { width: 100%; }
-      .dimension-list { grid-template-columns: repeat(2, 1fr); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .nav { flex-direction: column; }
+      button { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-<div class="container" id="quizBox">
-  <h1>麋鹿性癖雷达图测试 喵~</h1>
-  
-  <div class="progress-container">
-    <div id="progressFill"></div>
-  </div>
+<div class="container">
+  <h1>麋鹿终极性癖雷达图 喵~</h1>
+
   <div id="progressText">
     <span>第 <span id="currentQuestion">1</span> / 70 题</span>
     <span id="progressPercentage">1%</span>
   </div>
-  
-  <div id="questionArea">
-    <div class="question" id="qText">正在加载测试...</div>
-    <div class="options" id="qOptions"></div>
+  <div class="progress-container">
+    <div id="progressFill"></div>
   </div>
 
+  <div class="question" id="qText">正在加载...</div>
+  <div class="options" id="qOptions"></div>
+
   <div class="nav">
-    <button id="prevBtn" disabled>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-      </svg>
-      上一题
-    </button>
-    <button id="generateBtn" style="display:none;">
-      查看解析 喵~
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M6.354 5.5a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8 7.293 6.354 5.5z"/>
-        <path d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-      </svg>
-    </button>
+    <button id="prevBtn" disabled>上一题</button>
+    <button id="nextBtn">下一题</button>
+    <button id="generateBtn" style="display:none;">查看结果 喵~</button>
   </div>
-  
-  <span class="reset-link" onclick="resetTest()">清空数据重新开始</span>
-  
-  <div class="footer-note">
-    本测试仅供娱乐参考，结果不具备临床诊断意义。请理性看待测试结果。
+
+  <div style="text-align:center; margin-top:20px; color:#666; font-size:0.9rem;">
+    <span onclick="resetTest()" style="cursor:pointer; color:var(--primary);">重新开始测试</span>
   </div>
 </div>
 
 <div id="radarContainer">
   <div id="resultHeader"></div>
-  <div id="resultDesc"></div>
-  
-  <div style="position: relative; height: 400px; margin: 20px 0;">
+  <div style="position:relative; height:400px; margin:30px 0;">
     <canvas id="radarChart"></canvas>
   </div>
-  
-  <div id="dimensionDetails" class="dimension-list"></div>
-  
-  <div style="text-align: center; margin-top: 30px;">
-    <button onclick="window.location.reload()" style="background: #222; color: #fff; margin-right: 10px;">
-      重新测试
-    </button>
-    <button onclick="shareResults()" style="background: var(--accent); color: #fff;">
-      分享结果
-    </button>
+  <div id="dimensionDetails"></div>
+  <div style="text-align:center; margin-top:30px;">
+    <button onclick="window.location.reload()">重新测试</button>
   </div>
 </div>
 
 <div class="loader" id="chartLoader"></div>
 
 <script>
-  // 测试维度定义
-  const dimensions = [
-    '纯爱', '诱导', '情调', '虚待', '差辱', '征服', '控制', '强迫', 
-    '保护', '受虐', '屈辱', '臣服', '服从', '被迫', '叛逆', '放纵', 
-    '暴露', '群体', '跨性', '同性', '恋物', 'NTR', '暴虐', '调教'
-  ];
-  
-  // 维度描述（用于结果展示）
-  const dimensionDescriptions = {
-    '纯爱': '注重情感连接与温柔互动，偏好浪漫、亲密的关系模式',
-    '诱导': '享受引导与被引导的过程，喜欢暧昧、试探的互动方式',
-    '情调': '重视氛围营造与感官体验，偏好有仪式感的亲密互动',
-    '虚待': '渴望被需要、被依赖的感觉，享受照顾与被照顾的关系',
-    '差辱': '在权力差异中寻找快感，可能包含轻度羞辱或支配元素',
-    '征服': '享受征服与被征服的过程，偏好明确的权力动态',
-    '控制': '希望掌控互动节奏与方式，或享受被完全掌控的感觉',
-    '强迫': '在被迫或强制的情境中获得快感，强调权力不对等',
-    '保护': '渴望被保护或保护他人，在安全感中获得满足',
-    '受虐': '在身体或心理的适度痛感/不适中获得快感',
-    '屈辱': '通过被贬低、羞辱获得心理刺激与满足',
-    '臣服': '享受完全顺从、服从的状态，放弃控制权',
-    '服从': '愿意遵循指令、规则，在结构化互动中获得安全感',
-    '被迫': '在"不得不做"的情境中获得禁忌快感',
-    '叛逆': '反抗规则、挑战权威，在突破界限中获得刺激',
-    '放纵': '追求感官极致，偏好激烈、无拘束的互动方式',
-    '暴露': '在暴露或被观看中获得刺激，可能涉及展示欲望',
-    '群体': '对多人互动感兴趣，可能包含分享或被分享的幻想',
-    '跨性': '对跨性别元素或性别探索感兴趣',
-    '同性': '对同性亲密互动有特殊兴趣或偏好',
-    '恋物': '对特定物品、材质或身体部位有强烈偏好',
-    'NTR': '在伴侣被他人占有或占有他人伴侣的幻想中获得刺激',
-    '暴虐': '偏好激烈、粗暴的互动方式，可能包含疼痛元素',
-    '调教': '享受塑造、训练或被塑造、训练的过程'
-  };
-  
-  // 问题到维度的映射
-  const questionContributions = [
-    [0,2],[6,7],[21,15],[9,10],[4,22],[8,11],[0,21],[12,6],[2,16],[0,23],
-    [2,9],[0,1],[2,5],[23,6],[9,22],[11,16],[2,16],[12,6],[4,23],[2,4],
-    [0,23],[2,15],[0,1],[2,5],[0,23],[5,22],[6,7],[9,22],[5,23],[6,9],
-    [0,2],[11,6],[5,6],[0,2],[0,2],[9,22],[4,22],[11,12],[9,22],[2,5],
-    [17,15],[16,0],[21,17],[16,17],[16,21],[16,21],[0,1],[23,5],[0,1],
-    [9,10],[0,1],[6,7],[22,15],[21,0],[21,0],[8,0],[0,8],[0,4],[0,23],
-    [4,9],[2,15],[9,22],[5,6],[6,5],[0,16],[21,15],[21,16],[21,6],[16,21],
-    [17,21,22]
-  ];
-  
-  // 测试题目
-  const questions = [
-    {q:"1. 你更喜欢对方怎么开始亲吻？",opts:["温柔轻触慢慢深入","突然偷袭用力舌吻","先亲脸颊再慢慢移到唇","被含住下唇拉扯到发麻"]},
-    {q:"2. 舌吻时你最想要的感觉？",opts:["温柔缠绵交换呼吸","有点侵略互相追逐","对方完全主导你被动","激烈到喘不过气想哭"]},
-    {q:"3. 对方穿黑丝/丝袜时你的反应？",opts:["心动但能忍","瞬间想上手摸","脑子直接空白只想扑倒","完全没感觉"]},
-    {q:"4. 被咬耳朵时你希望？",opts:["轻轻啃一下就放开","用牙齿慢慢磨耳垂","边咬边吸吮到发麻","完全不喜欢被咬"]},
-    {q:"5. 对方抚摸背部你更喜欢？",opts:["指尖轻轻像羽毛划过","用指甲稍微刮出红痕","整只手掌用力揉捏","直接抓到皮肤发疼"]},
-    {q:"6. 被从后面抱住抬下巴？",opts:["超级有安全感","会瞬间腿软兴奋","有点害怕但又期待","完全不喜欢这种控制"]},
-    {q:"7. 闻到对方脖颈/锁骨味道？",opts:["觉得好闻但也就那样","会心跳加速想靠近","直接腿软想埋进去","没特别感觉"]},
-    {q:"8. 你更想在play中蒙眼？",opts:["被蒙眼失去视觉","亲手蒙住对方的眼睛","双方都不蒙保持对视","轮流蒙眼玩"]},
-    {q:"9. 脱衣服的过程偏好？",opts:["慢慢一件件解开很有仪式感","被对方粗暴直接扯开","自己主动脱给对方看","对方帮你脱到一半停住逗你"]},
-    {q:"10. 对方在耳边叫你名字？",opts:["会觉得很亲密","瞬间起鸡皮疙瘩兴奋","希望叫得更色情一点","没什么特别反应"]},
-    {q:"11. 被轻轻咬大腿内侧？",opts:["痒痒的但舒服","会颤抖想夹紧腿","直接湿掉求更多","不喜欢被咬那里"]},
-    {q:"12. 对方含住乳尖的感觉？",opts:["温柔舔弄就够","轻吸会让我发抖","用力吸吮到疼才爽","完全没反应"]},
-    {q:"13. 被舔敏感点时你希望？",opts:["慢速温柔画圈","来回快速拨弄","整片区域舔到湿透","不喜欢被舔"]},
-    {q:"14. 对方用手指刺激时？",opts:["轻轻按压就好","快速揉搓到发麻","插进去勾弄最敏感点","只在外侧玩就够"]},
-    {q:"15. 被轻轻弹那里会？",opts:["惊讶但有点爽","全身一颤想躲","直接高潮边缘","讨厌这种刺激"]},
-    {q:"16. 被分开双腿欣赏时？",opts:["害羞但接受","超级兴奋想被看","主动自己掰开展示","不喜欢被这样看"]},
-    {q:"17. 对镜子play的态度？",opts:["有点尴尬但好奇","超级刺激会更湿","必须看着否则不爽","完全不想看"]},
-    {q:"18. 被束缚手腕时？",opts:["轻轻扣住就行","用力扣到留痕","完全绑起来动不了","不喜欢被绑"]},
-    {q:"19. 被叫「小骚货」时？",opts:["脸红但不喜欢","会更兴奋","必须叫得更脏才行","完全没感觉"]},
-    {q:"20. 言语羞辱你能接受？",opts:["轻微调戏就好","中度贬低很爽","重度羞辱到想哭","完全不能接受"]},
-    {q:"21. 被边缘（edging）折磨时？",opts:["几分钟就受不了","能忍很久很享受","想被一直折磨到崩溃","不喜欢被憋着"]},
-    {q:"22. 连续高潮到失神？",opts:["一次就够","两三次还能忍","一直做到失神才满足","高潮太多次会怕"]},
-    {q:"23. 对潮吹的态度？",opts:["很害羞不想","好奇想试试","必须潮吹才算爽","完全没兴趣"]},
-    {q:"24. 你更偏好哪种高潮？",opts:["阴蒂高潮最强烈","阴道内部高潮更满足","两者一起最爽","随便哪种都行"]},
-    {q:"25. 让你高潮的方式？",opts:["只用手指","只用舌头","手指+舌头一起","必须有插入才行"]},
-    {q:"26. G点被刺激时？",opts:["很敏感容易高潮","有点感觉但不强","必须大力刺激才爽","几乎没感觉"]},
-    {q:"27. 被填满的感觉？",opts:["浅浅摩擦更喜欢","完全填满才满足","越深越好","不喜欢被填满"]},
-    {q:"28. 同时刺激阴蒂+插入？",opts:["太刺激受不了","超级爽想一直这样","必须这样才高潮","不喜欢双重刺激"]},
-    {q:"29. 抽插节奏你偏好？",opts:["缓慢深插","快速猛撞","先慢后快变速","节奏随便都行"]},
-    {q:"30. 从后面进入的感觉？",opts:["有点疼但刺激","超级有被占有感","最喜欢这个姿势","不喜欢从后面"]},
-    {q:"31. 传教士位时？",opts:["希望被紧紧抱住","想看着对方眼睛","腿被抬高更深","随便什么姿势"]},
-    {q:"32. 骑乘位时？",opts:["喜欢自己掌控节奏","想被对方从下顶上来","边骑边被掐腰","不太喜欢在上"]},
-    {q:"33. 更喜欢？",opts:["被压在身下","把对方压在身下","互相轮流主导","无所谓谁在上"]},
-    {q:"34. 做的时候被盯着眼睛？",opts:["会害羞想躲","超级亲密更兴奋","必须对视才爽","不喜欢对视"]},
-    {q:"35. 做爱过程中亲吻？",opts:["不断亲嘴很想要","只亲脖子/胸就好","亲吻越激烈越好","不喜欢边做边亲"]},
-    {q:"36. 轻度掐脖子（窒息play）？",opts:["完全不能接受","轻轻掐一下可以","稍微用力很刺激","必须到缺氧边缘才爽"]},
-    {q:"37. 被打屁股？",opts:["轻轻拍就够","打到发红才爽","越用力越兴奋","不喜欢被打"]},
-    {q:"38. 轻度捆绑（绳子/皮带）？",opts:["不喜欢任何束缚","手腕绑一下可以","全身捆绑很期待","只接受象征性捆绑"]},
-    {q:"39. 蜡油滴落皮肤？",opts:["怕疼不想试","温热感很刺激","必须滴到敏感部位","完全没兴趣"]},
-    {q:"40. 冰块 vs 热感刺激？",opts:["更喜欢冰块凉感","更喜欢热感温暖","冰热交替最爽","都不喜欢"]},
-    {q:"41. 对多人场景（幻想）？",opts:["完全不能接受","幻想可以现实不行","轻度分享有兴趣","多人一起很期待"]},
-    {q:"42. 被注视 vs 被占有？",opts:["只想被一个人占有","被很多人注视很刺激","两者都想要","都不喜欢"]},
-    {q:"43. 对NTR（被分享/被看）？",opts:["完全排斥","幻想有点兴奋","轻度现实可以","超级喜欢这种刺激"]},
-    {q:"44. 公开场合偷偷摸摸？",opts:["太危险不想","轻微刺激可以","必须有风险才爽","完全没兴趣"]},
-    {q:"45. 在车里/厕所/试衣间做？",opts:["太尴尬不行","刺激但怕被抓","超级想试","没感觉"]},
-    {q:"46. 被录像/拍照？",opts:["完全不能接受","只给自己看可以","被对方留着很兴奋","想被传播才爽"]},
-    {q:"47. 真实发生 vs 言语幻想？",opts:["只停留在幻想","轻度真实可以","必须真实才满足","随便都行"]},
-    {q:"48. 角色扮演深度？",opts:["简单服装就好","要台词和剧情","完全沉浸式演到底","不喜欢角色扮演"]},
-    {q:"49. 对方呻吟声？",opts:["可爱娇喘最喜欢","低沉性感很撩","哭腔求饶最爽","没特别偏好"]},
-    {q:"50. 对哭腔/求饶声？",opts:["有点心软","会更兴奋想欺负","必须听到才满足","不喜欢这种声音"]},
-    {q:"51. 对方高潮时声音？",opts:["咬唇忍住很可爱","放肆叫出来最棒","哭着高潮最刺激","声音无所谓"]},
-    {q:"52. 被射在里面？",opts:["必须戴套","幻想很爽现实怕","超级满足想一直这样","完全没感觉"]},
-    {q:"53. 内射后继续做？",opts:["太敏感不行","想试试连续感","必须一直做到溢出来","不喜欢继续"]},
-    {q:"54. 被射在哪个位置最喜欢？",opts:["胸上/肚子上","脸上很刺激","嘴里/吞下去","里面最满足"]},
-    {q:"55. 对精液的态度？",opts:["完全不能接受","可以涂抹玩","吞咽很兴奋","被射满才爽"]},
-    {q:"56. 安全套内射 vs 无套？",opts:["必须戴套","戴套内射也行","无套感最真实","无所谓"]},
-    {q:"57. 事后被抱着清理？",opts:["超级温柔想要","有点害羞但接受","必须被舔干净才满足","不喜欢事后玩"]},
-    {q:"58. 做完后被亲额头？",opts:["很温暖很喜欢","觉得太甜腻","希望更粗暴一点","无所谓"]},
-    {q:"59. 被夸「好棒」「真乖」？",opts:["会害羞大开心","超级有被驯服感","必须一直夸才行","没感觉"]},
-    {q:"60. 事后轻度羞辱（「刚刚那么浪」）？",opts:["脸红想否认","会更兴奋想再来","必须重度羞辱才爽","不喜欢被说"]},
-    {q:"61. 一次性很久很久，还是短时间多次？",opts:["一次很久很满足","短时间多次更爽","一直做到天亮","随便都行"]},
-    {q:"62. 被操到走不动路？",opts:["怕疼不想","有点期待","必须这样才算完","不喜欢太激烈"]},
-    {q:"63. 被抱起来边走边插？",opts:["太难了吧","超级有被占有感","必须试一次","没兴趣"]},
-    {q:"64. 被抵在墙上做？",opts:["浪漫但不实用","很刺激想试","最喜欢这个场景","不喜欢站着做"]},
-    {q:"65. 哪个场景最有感觉？",opts:["床上最安全","办公桌/厨房","浴室湿身play","随便哪里都行"]},
-    {q:"66. 冬天闷热被窝 vs 夏天汗湿黏腻？",opts:["冬天温暖更喜欢","夏天汗湿更色","两者都爱","没区别"]},
-    {q:"67. 对气味癖（原味）？",opts:["完全不能接受","轻微体味可以","腋下/私处原味很兴奋","必须闻才爽"]},
-    {q:"68. 对方穿你的衣服/内裤？",opts:["觉得可爱","瞬间兴奋想扑","必须穿我的内衣才行","没感觉"]},
-    {q:"69. 对方用你的丝袜/内裤自慰给你看？",opts:["太羞耻不行","超级刺激想看","必须边看边玩","不感兴趣"]},
-    {q:"70. 最后：你希望被怎么对待？",opts:["温柔宠爱到融化","激烈但有底线","狠狠地、彻底地、毫无保留地弄坏","随便怎么都行"]}
+const dimensions = [
+  '纯爱','诱导','情调','虚待','差辱','征服','控制','强迫',
+  '保护','受虐','屈辱','臣服','服从','被迫','叛逆','放纵',
+  '暴露','群体','跨性','同性','恋物','NTR','暴虐','调教'
+];
+
+const questionContributions = [
+  [0,2],[6,7],[21,15],[9,10],[4,22],[8,11],[0,21],[12,6],[2,16],[0,23],
+  [2,9],[0,1],[2,5],[23,6],[9,22],[11,16],[2,16],[12,6],[4,23],[2,4],
+  [0,23],[2,15],[0,1],[2,5],[0,23],[5,22],[6,7],[9,22],[5,23],[6,9],
+  [0,2],[11,6],[5,6],[0,2],[0,2],[9,22],[4,22],[11,12],[9,22],[2,5],
+  [17,15],[16,0],[21,17],[16,17],[16,21],[16,21],[0,1],[23,5],[0,1],[9,10],
+  [0,1],[6,7],[22,15],[21,0],[21,0],[8,0],[0,8],[0,4],[0,23],[4,9],
+  [2,15],[9,22],[5,6],[6,5],[0,16],[21,15],[21,16],[21,6],[16,21],[17,21,22]
+];
+
+const questions = [
+  {q:"1. 你更喜欢对方怎么开始亲吻？",opts:["A. 温柔轻触慢慢深入","B. 突然偷袭用力舌吻","C. 先亲脸颊再慢慢移到唇","D. 被含住下唇拉扯到发麻"]},
+  {q:"2. 舌吻时你最想要的感觉？",opts:["A. 温柔缠绵交换呼吸","B. 有点侵略互相追逐","C. 对方完全主导你被动","D. 激烈到喘不过气想哭"]},
+  {q:"3. 对方穿黑丝/丝袜时你的反应？",opts:["A. 心动但能忍","B. 瞬间想上手摸","C. 脑子直接空白只想扑倒","D. 完全没感觉"]},
+  {q:"4. 被咬耳朵时你希望？",opts:["A. 轻轻啃一下就放开","B. 用牙齿慢慢磨耳垂","C. 边咬边吸吮到发麻","D. 完全不喜欢被咬"]},
+  {q:"5. 对方抚摸背部你更喜欢？",opts:["A. 指尖轻轻像羽毛划过","B. 用指甲稍微刮出红痕","C. 整只手掌用力揉捏","D. 直接抓到皮肤发疼"]},
+  {q:"6. 被从后面抱住抬下巴？",opts:["A. 超级有安全感","B. 会瞬间腿软兴奋","C. 有点害怕但又期待","D. 完全不喜欢这种控制"]},
+  {q:"7. 闻到对方脖颈/锁骨味道？",opts:["A. 觉得好闻但也就那样","B. 会心跳加速想靠近","C. 直接腿软想埋进去","D. 没特别感觉"]},
+  {q:"8. 你更想在play中蒙眼？",opts:["A. 被蒙眼失去视觉","B. 亲手蒙住对方的眼睛","C. 双方都不蒙保持对视","D. 轮流蒙眼玩"]},
+  {q:"9. 脱衣服的过程偏好？",opts:["A. 慢慢一件件解开很有仪式感","B. 被对方粗暴直接扯开","C. 自己主动脱给对方看","D. 对方帮你脱到一半停住逗你"]},
+  {q:"10. 对方在耳边叫你名字？",opts:["A. 会觉得很亲密","B. 瞬间起鸡皮疙瘩兴奋","C. 希望叫得更色情一点","D. 没什么特别反应"]},
+  {q:"11. 被轻轻咬大腿内侧？",opts:["A. 痒痒的但舒服","B. 会颤抖想夹紧腿","C. 直接湿掉求更多","D. 不喜欢被咬那里"]},
+  {q:"12. 对方含住乳尖的感觉？",opts:["A. 温柔舔弄就够","B. 轻吸会让我发抖","C. 用力吸吮到疼才爽","D. 完全没反应"]},
+  {q:"13. 被舔敏感点时你希望？",opts:["A. 慢速温柔画圈","B. 来回快速拨弄","C. 整片区域舔到湿透","D. 不喜欢被舔"]},
+  {q:"14. 对方用手指刺激时？",opts:["A. 轻轻按压就好","B. 快速揉搓到发麻","C. 插进去勾弄最敏感点","D. 只在外侧玩就够"]},
+  {q:"15. 被轻轻弹那里会？",opts:["A. 惊讶但有点爽","B. 全身一颤想躲","C. 直接高潮边缘","D. 讨厌这种刺激"]},
+  {q:"16. 被分开双腿欣赏时？",opts:["A. 害羞但接受","B. 超级兴奋想被看","C. 主动自己掰开展示","D. 不喜欢被这样看"]},
+  {q:"17. 对镜子play的态度？",opts:["A. 有点尴尬但好奇","B. 超级刺激会更湿","C. 必须看着否则不爽","D. 完全不想看"]},
+  {q:"18. 被束缚手腕时？",opts:["A. 轻轻扣住就行","B. 用力扣到留痕","C. 完全绑起来动不了","D. 不喜欢被绑"]},
+  {q:"19. 被叫“小骚货”时？",opts:["A. 脸红但不喜欢","B. 会更兴奋","C. 必须叫得更脏才行","D. 完全没感觉"]},
+  {q:"20. 言语羞辱你能接受？",opts:["A. 轻微调戏就好","B. 中度贬低很爽","C. 重度羞辱到想哭","D. 完全不能接受"]},
+  {q:"21. 被边缘（edging）折磨时？",opts:["A. 几分钟就受不了","B. 能忍很久很享受","C. 想被一直折磨到崩溃","D. 不喜欢被憋着"]},
+  {q:"22. 连续高潮到失神？",opts:["A. 一次就够","B. 两三次还能忍","C. 一直做到失神才满足","D. 高潮太多次会怕"]},
+  {q:"23. 对潮吹的态度？",opts:["A. 很害羞不想","B. 好奇想试试","C. 必须潮吹才算爽","D. 完全没兴趣"]},
+  {q:"24. 你更偏好哪种高潮？",opts:["A. 阴蒂高潮最强烈","B. 阴道内部高潮更满足","C. 两者一起最爽","D. 随便哪种都行"]},
+  {q:"25. 让你高潮的方式？",opts:["A. 只用手指","B. 只用舌头","C. 手指+舌头一起","D. 必须有插入才行"]},
+  {q:"26. G点被刺激时？",opts:["A. 很敏感容易高潮","B. 有点感觉但不强","C. 必须大力刺激才爽","D. 几乎没感觉"]},
+  {q:"27. 被填满的感觉？",opts:["A. 浅浅摩擦更喜欢","B. 完全填满才满足","C. 越深越好","D. 不喜欢被填满"]},
+  {q:"28. 同时刺激阴蒂+插入？",opts:["A. 太刺激受不了","B. 超级爽想一直这样","C. 必须这样才高潮","D. 不喜欢双重刺激"]},
+  {q:"29. 抽插节奏你偏好？",opts:["A. 缓慢深插","B. 快速猛撞","C. 先慢后快变速","D. 节奏随便都行"]},
+  {q:"30. 从后面进入的感觉？",opts:["A. 有点疼但刺激","B. 超级有被占有感","C. 最喜欢这个姿势","D. 不喜欢从后面"]},
+  {q:"31. 传教士位时？",opts:["A. 希望被紧紧抱住","B. 想看着对方眼睛","C. 腿被抬高更深","D. 随便什么姿势"]},
+  {q:"32. 骑乘位时？",opts:["A. 喜欢自己掌控节奏","B. 想被对方从下顶上来","C. 边骑边被掐腰","D. 不太喜欢在上"]},
+  {q:"33. 更喜欢？",opts:["A. 被压在身下","B. 把对方压在身下","C. 互相轮流主导","D. 无所谓谁在上"]},
+  {q:"34. 做的时候被盯着眼睛？",opts:["A. 会害羞想躲","B. 超级亲密更兴奋","C. 必须对视才爽","D. 不喜欢对视"]},
+  {q:"35. 做爱过程中亲吻？",opts:["A. 不断亲嘴很想要","B. 只亲脖子/胸就好","C. 亲吻越激烈越好","D. 不喜欢边做边亲"]},
+  {q:"36. 轻度掐脖子（窒息play）？",opts:["A. 完全不能接受","B. 轻轻掐一下可以","C. 稍微用力很刺激","D. 必须到缺氧边缘才爽"]},
+  {q:"37. 被打屁股？",opts:["A. 轻轻拍就够","B. 打到发红才爽","C. 越用力越兴奋","D. 不喜欢被打"]},
+  {q:"38. 轻度捆绑（绳子/皮带）？",opts:["A. 不喜欢任何束缚","B. 手腕绑一下可以","C. 全身捆绑很期待","D. 只接受象征性捆绑"]},
+  {q:"39. 蜡油滴落皮肤？",opts:["A. 怕疼不想试","B. 温热感很刺激","C. 必须滴到敏感部位","D. 完全没兴趣"]},
+  {q:"40. 冰块 vs 热感刺激？",opts:["A. 更喜欢冰块凉感","B. 更喜欢热感温暖","C. 冰热交替最爽","D. 都不喜欢"]},
+  {q:"41. 对多人场景（幻想）？",opts:["A. 完全不能接受","B. 幻想可以现实不行","C. 轻度分享有兴趣","D. 多人一起很期待"]},
+  {q:"42. 被注视 vs 被占有？",opts:["A. 只想被一个人占有","B. 被很多人注视很刺激","C. 两者都想要","D. 都不喜欢"]},
+  {q:"43. 对NTR（被分享/被看）？",opts:["A. 完全排斥","B. 幻想有点兴奋","C. 轻度现实可以","D. 超级喜欢这种刺激"]},
+  {q:"44. 公开场合偷偷摸摸？",opts:["A. 太危险不想","B. 轻微刺激可以","C. 必须有风险才爽","D. 完全没兴趣"]},
+  {q:"45. 在车里/厕所/试衣间做？",opts:["A. 太尴尬不行","B. 刺激但怕被抓","C. 超级想试","D. 没感觉"]},
+  {q:"46. 被录像/拍照？",opts:["A. 完全不能接受","B. 只给自己看可以","C. 被对方留着很兴奋","D. 想被传播才爽"]},
+  {q:"47. 真实发生 vs 言语幻想？",opts:["A. 只停留在幻想","B. 轻度真实可以","C. 必须真实才满足","D. 随便都行"]},
+  {q:"48. 角色扮演深度？",opts:["A. 简单服装就好","B. 要台词和剧情","C. 完全沉浸式演到底","D. 不喜欢角色扮演"]},
+  {q:"49. 对方呻吟声？",opts:["A. 可爱娇喘最喜欢","B. 低沉性感很撩","C. 哭腔求饶最爽","D. 没特别偏好"]},
+  {q:"50. 对哭腔/求饶声？",opts:["A. 有点心软","B. 会更兴奋想欺负","C. 必须听到才满足","D. 不喜欢这种声音"]},
+  {q:"51. 对方高潮时声音？",opts:["A. 咬唇忍住很可爱","B. 放肆叫出来最棒","C. 哭着高潮最刺激","D. 声音无所谓"]},
+  {q:"52. 被射在里面？",opts:["A. 必须戴套","B. 幻想很爽现实怕","C. 超级满足想一直这样","D. 完全没感觉"]},
+  {q:"53. 内射后继续做？",opts:["A. 太敏感不行","B. 想试试连续感","C. 必须一直做到溢出来","D. 不喜欢继续"]},
+  {q:"54. 被射在哪个位置最喜欢？",opts:["A. 胸上/肚子上","B. 脸上很刺激","C. 嘴里/吞下去","D. 里面最满足"]},
+  {q:"55. 对精液的态度？",opts:["A. 完全不能接受","B. 可以涂抹玩","C. 吞咽很兴奋","D. 被射满才爽"]},
+  {q:"56. 安全套内射 vs 无套？",opts:["A. 必须戴套","B. 戴套内射也行","C. 无套感最真实","D. 无所谓"]},
+  {q:"57. 事后被抱着清理？",opts:["A. 超级温柔想要","B. 有点害羞但接受","C. 必须被舔干净才满足","D. 不喜欢事后玩"]},
+  {q:"58. 做完后被亲额头？",opts:["A. 很温暖很喜欢","B. 觉得太甜腻","C. 希望更粗暴一点","D. 无所谓"]},
+  {q:"59. 被夸“好棒”“真乖”？",opts:["A. 会害羞但开心","B. 超级有被驯服感","C. 必须一直夸才行","D. 没感觉"]},
+  {q:"60. 事后轻度羞辱（“刚刚那么浪”）？",opts:["A. 脸红想否认","B. 会更兴奋想再来","C. 必须重度羞辱才爽","D. 不喜欢被说"]},
+  {q:"61. 一次性很久很久，还是短时间多次？",opts:["A. 一次很久很满足","B. 短时间多次更爽","C. 一直做到天亮","D. 随便都行"]},
+  {q:"62. 被操到走不动路？",opts:["A. 怕疼不想","B. 有点期待","C. 必须这样才算完","D. 不喜欢太激烈"]},
+  {q:"63. 被抱起来边走边插？",opts:["A. 太难了吧","B. 超级有被占有感","C. 必须试一次","D. 没兴趣"]},
+  {q:"64. 被抵在墙上做？",opts:["A. 浪漫但不实用","B. 很刺激想试","C. 最喜欢这个场景","D. 不喜欢站着做"]},
+  {q:"65. 哪个场景最有感觉？",opts:["A. 床上最安全","B. 办公桌/厨房","C. 浴室湿身play","D. 随便哪里都行"]},
+  {q:"66. 冬天闷热被窝 vs 夏天汗湿黏腻？",opts:["A. 冬天温暖更喜欢","B. 夏天汗湿更色","C. 两者都爱","D. 没区别"]},
+  {q:"67. 对气味癖（原味）？",opts:["A. 完全不能接受","B. 轻微体味可以","C. 腋下/私处原味很兴奋","D. 必须闻才爽"]},
+  {q:"68. 对方穿你的衣服/内裤？",opts:["A. 觉得可爱","B. 瞬间兴奋想扑","C. 必须穿我的内衣才行","D. 没感觉"]},
+  {q:"69. 对方用你的丝袜/内裤自慰给你看？",opts:["A. 太羞耻不行","B. 超级刺激想看","C. 必须边看边玩","D. 不感兴趣"]},
+  {q:"70. 最后：你希望被怎么对待？",opts:["A. 温柔宠爱到融化","B. 激烈但有底线","C. 狠狠地、彻底地、毫无保留地弄坏","D. 随便怎么都行"]}
   ];
 
-  // 应用状态
-  let currentQuestion = parseInt(localStorage.getItem('milu_idx')) || 0;
-  let answers = JSON.parse(localStorage.getItem('milu_ans')) || new Array(questions.length).fill(null);
-  let radarChart = null;
+  let currentQuestion = parseInt(localStorage.getItem('milu_current') || '0');
+  let answers = JSON.parse(localStorage.getItem('milu_answers') || '[]');
+  if (answers.length !== questions.length) answers = new Array(questions.length).fill(null);
 
-  // 初始化应用
-  function initApp() {
-    // 检查是否有警告接受记录
-    if (!localStorage.getItem('milu_warning_accepted')) {
-      showWarning();
-    } else {
-      renderQuestion();
-    }
+  function saveProgress() {
+    localStorage.setItem('milu_current', currentQuestion);
+    localStorage.setItem('milu_answers', JSON.stringify(answers));
   }
 
-  // 显示内容警告
-  function showWarning() {
-    const warningHTML = `
-      <div style="text-align: center; padding: 20px;">
-        <h2 style="color: var(--warning); margin-bottom: 20px;">⚠️ 内容警告</h2>
-        <p style="margin-bottom: 15px;">本测试包含成人内容，涉及性偏好相关话题。</p>
-        <p style="margin-bottom: 25px;">请确保您已年满18岁，并在私密环境下进行测试。</p>
-        <div style="display: flex; gap: 15px; justify-content: center;">
-          <button onclick="acceptWarning()" style="background: var(--success); color: white; padding: 10px 25px;">
-            我已满18岁，继续测试
-          </button>
-          <button onclick="window.location.href='https://www.google.com'" style="background: #666; color: white; padding: 10px 25px;">
-            离开页面
-          </button>
-        </div>
-      </div>
-    `;
-    
-    document.getElementById('questionArea').innerHTML = warningHTML;
-    document.getElementById('progressText').style.display = 'none';
-    document.getElementById('progressContainer').style.display = 'none';
-    document.getElementById('prevBtn').style.display = 'none';
-    document.getElementById('generateBtn').style.display = 'none';
-    document.querySelector('.reset-link').style.display = 'none';
-  }
-
-  // 接受警告
-  function acceptWarning() {
-    localStorage.setItem('milu_warning_accepted', 'true');
-    renderQuestion();
-    document.getElementById('progressText').style.display = 'block';
-    document.getElementById('progressContainer').style.display = 'block';
-    document.getElementById('prevBtn').style.display = 'flex';
-    document.getElementById('generateBtn').style.display = 'none';
-    document.querySelector('.reset-link').style.display = 'block';
-  }
-
-  // 渲染当前题目
   function renderQuestion() {
+    if (currentQuestion >= questions.length) currentQuestion = questions.length - 1;
     const q = questions[currentQuestion];
     document.getElementById('qText').textContent = q.q;
-    document.getElementById('currentQuestion').textContent = currentQuestion + 1;
-    
-    const optionsDiv = document.getElementById('qOptions');
-    optionsDiv.innerHTML = '';
-    
+
+    const optsDiv = document.getElementById('qOptions');
+    optsDiv.innerHTML = '';
+
     q.opts.forEach((opt, idx) => {
       const label = document.createElement('label');
-      const checked = answers[currentQuestion] === idx + 1;
-      
+      const isChecked = answers[currentQuestion] === idx + 1;
       label.innerHTML = `
-        <input type="radio" name="q" value="${idx+1}" ${checked ? 'checked' : ''}>
+        <input type="radio" name="q\( {currentQuestion}" value=" \){idx+1}" ${isChecked ? 'checked' : ''}>
         <span>${opt}</span>
-        <div class="option-indicator">▶</div>
       `;
-      
-      label.onclick = () => selectOption(idx + 1);
-      optionsDiv.appendChild(label);
+      label.addEventListener('click', () => {
+        answers[currentQuestion] = idx + 1;
+        saveProgress();
+        updateProgress();
+        updateButtons();
+      });
+      optsDiv.appendChild(label);
     });
 
-    // 更新进度
+    document.getElementById('currentQuestion').textContent = currentQuestion + 1;
     updateProgress();
-    
-    // 更新按钮状态
-    document.getElementById('prevBtn').disabled = currentQuestion === 0;
-    document.getElementById('generateBtn').style.display = 
-      (currentQuestion === questions.length - 1 && answers[currentQuestion]) ? 'flex' : 'none';
+    updateButtons();
   }
 
-  // 更新进度显示
   function updateProgress() {
     const progress = ((currentQuestion + 1) / questions.length) * 100;
     document.getElementById('progressFill').style.width = progress + '%';
-    document.getElementById('progressPercentage').textContent = `${Math.round(progress)}%`;
+    document.getElementById('progressPercentage').textContent = Math.round(progress) + '%';
   }
 
-  // 选择选项
-  function selectOption(val) {
-    answers[currentQuestion] = val;
-    localStorage.setItem('milu_ans', JSON.stringify(answers));
-    localStorage.setItem('milu_idx', currentQuestion);
-    
-    // 视觉反馈
-    const selectedLabel = document.querySelector(`label input[value="${val}"]`).parentElement;
-    selectedLabel.style.background = 'rgba(255, 105, 180, 0.15)';
-    selectedLabel.style.borderColor = 'var(--primary)';
-    
-    // 自动前进或显示生成按钮
+  function updateButtons() {
+    document.getElementById('prevBtn').disabled = currentQuestion === 0;
+    document.getElementById('nextBtn').style.display = currentQuestion < questions.length - 1 ? 'block' : 'none';
+    document.getElementById('generateBtn').style.display = currentQuestion === questions.length - 1 ? 'block' : 'none';
+  }
+
+  function nextQuestion() {
     if (currentQuestion < questions.length - 1) {
-      setTimeout(() => {
-        currentQuestion++;
-        renderQuestion();
-      }, 300);
-    } else {
+      currentQuestion++;
       renderQuestion();
     }
   }
 
-  // 上一题
-  document.getElementById('prevBtn').onclick = () => {
+  function prevQuestion() {
     if (currentQuestion > 0) {
       currentQuestion--;
       renderQuestion();
     }
-  };
+  }
 
-  // 重置测试
   function resetTest() {
-    if(confirm("确定要清空进度重新开始吗？喵~")) {
-      localStorage.removeItem('milu_idx');
-      localStorage.removeItem('milu_ans');
+    if (confirm("确定要清空所有进度重新开始吗？喵~")) {
+      localStorage.removeItem('milu_current');
+      localStorage.removeItem('milu_answers');
       currentQuestion = 0;
       answers = new Array(questions.length).fill(null);
       renderQuestion();
     }
   }
 
-  // 生成雷达图
-  document.getElementById('generateBtn').onclick = () => {
-    // 显示加载动画
+  function generateRadar() {
+    if (answers.some(a => a === null)) {
+      alert("喵~ 还有题目没选完哦~ 请检查所有题目~");
+      return;
+    }
+
     document.getElementById('chartLoader').style.display = 'block';
-    
-    // 延迟执行以确保加载动画可见
+
     setTimeout(() => {
-      generateRadarChart();
-      document.getElementById('chartLoader').style.display = 'none';
-    }, 100);
-  };
+      try {
+        const scores = new Array(dimensions.length).fill(0);
+        const counts = new Array(dimensions.length).fill(0);
 
-  // 生成雷达图和数据
-  function generateRadarChart() {
-    // 计算维度分数
-    const scores = new Array(dimensions.length).fill(0);
-    const counts = new Array(dimensions.length).fill(0);
-
-    answers.forEach((val, i) => {
-      if (val !== null) {
-        const contrib = questionContributions[i] || [];
-        contrib.forEach(idx => {
-          scores[idx] += val;
-          counts[idx]++;
+        answers.forEach((val, i) => {
+          const contrib = questionContributions[i] || [];
+          contrib.forEach(idx => {
+            scores[idx] += val;
+            counts[idx]++;
+          });
         });
-      }
-    });
 
-    // 计算平均分
-    const avgScores = scores.map((s, i) => 
-      counts[i] > 0 ? (s / counts[i]) : 1
-    );
-    
-    // 找出最高分维度
-    const maxVal = Math.max(...avgScores);
-    const maxIdx = avgScores.indexOf(maxVal);
-    
-    // 找出前三个维度
-    const sortedIndices = avgScores
-      .map((score, idx) => ({ score, idx }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3);
+        const avgScores = scores.map((s, i) => counts[i] > 0 ? Number((s / counts[i]).toFixed(2)) : 1);
 
-    // 隐藏测试界面，显示结果
-    document.getElementById('quizBox').style.display = 'none';
-    const container = document.getElementById('radarContainer');
-    container.style.display = 'block';
-    
-    // 设置结果标题和描述
-    document.getElementById('resultHeader').innerHTML = 
-      `✨ 你的最强潜质：<strong style="color: var(--primary);">${dimensions[maxIdx]}</strong> (${maxVal.toFixed(2)}/4.0)`;
-    
-    const description = dimensionDescriptions[dimensions[maxIdx]] || '这是一个特别的偏好维度，反映了你在亲密关系中的独特倾向。';
-    
-    document.getElementById('resultDesc').innerHTML = `
-      <p>🐱 <strong>分析结果：</strong>${description}</p>
-      <p>📊 <strong>主要特征：</strong></p>
-      <ol style="margin-left: 20px; margin-top: 10px;">
-        ${sortedIndices.map((item, i) => 
-          `<li><strong>${dimensions[item.idx]}</strong> (${avgScores[item.idx].toFixed(2)}/4.0) - ${dimensionDescriptions[dimensions[item.idx]] || '未找到描述'}</li>`
-        ).join('')}
-      </ol>
-      <p style="margin-top: 15px; font-size: 0.9em; color: #777;">
-        * 分数越高表示该维度倾向越强，满分为4.0
-      </p>
-    `;
-    
-    // 渲染维度列表
-    const dimensionList = document.getElementById('dimensionDetails');
-    dimensionList.innerHTML = dimensions.map((dim, idx) => `
-      <div class="dimension-item">
-        <div style="font-weight: bold; color: ${avgScores[idx] > 3 ? 'var(--primary)' : avgScores[idx] > 2 ? 'var(--secondary)' : 'var(--text)'}">
-          ${dim}
-        </div>
-        <div style="color: ${avgScores[idx] > 3 ? 'var(--primary)' : avgScores[idx] > 2 ? 'var(--secondary)' : '#888'}">
-          ${avgScores[idx].toFixed(2)}
-        </div>
-      </div>
-    `).join('');
-    
-    // 创建雷达图
-    const ctx = document.getElementById('radarChart').getContext('2d');
-    
-    // 如果已有图表实例，先销毁
-    if (radarChart) {
-      radarChart.destroy();
-    }
-    
-    radarChart = new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: dimensions,
-        datasets: [{
-          label: '倾向强度',
-          data: avgScores,
-          backgroundColor: 'rgba(255, 105, 184, 0.2)',
-          borderColor: '#ff69b4',
-          pointBackgroundColor: (context) => {
-            const index = context.dataIndex;
-            return avgScores[index] > 3 ? '#ff69b4' : 
-                   avgScores[index] > 2.5 ? '#1e90ff' : 
-                   avgScores[index] > 2 ? '#9d4edd' : '#666';
+        const maxVal = Math.max(...avgScores);
+        const maxIdx = avgScores.indexOf(maxVal);
+
+        document.getElementById('resultHeader').innerHTML = 
+          `你的最强倾向：<span style="color:var(--primary)">\( {dimensions[maxIdx]}</span> ( \){maxVal}/4.0) 喵~`;
+
+        const detailsDiv = document.getElementById('dimensionDetails');
+        detailsDiv.innerHTML = dimensions.map((dim, i) => `
+          <div class="dimension-item">
+            <div>${dim}</div>
+            <div style="color:${avgScores[i]>3?'var(--primary)':avgScores[i]>2?'var(--secondary)':'#888'}">
+              ${avgScores[i].toFixed(2)}
+            </div>
+          </div>
+        `).join('');
+
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: dimensions,
+            datasets: [{
+              label: '倾向强度',
+              data: avgScores,
+              backgroundColor: 'rgba(255,105,180,0.15)',
+              borderColor: '#ff69b4',
+              pointBackgroundColor: '#4169e1',
+              pointBorderColor: '#fff',
+              borderWidth: 2
+            }]
           },
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: '#ff69b4',
-          borderWidth: 2,
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: {
-            min: 1,
-            max: 4,
-            ticks: {
-              display: false,
-              stepSize: 1,
-              backdropColor: 'transparent'
-            },
-            grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            },
-            angleLines: {
-              color: 'rgba(255, 255, 255, 0.1)'
-            },
-            pointLabels: {
-              color: '#888',
-              font: {
-                size: 11,
-                weight: '500'
-              }
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                return `${context.label}: ${context.raw.toFixed(2)}/4.0`;
+          options: {
+            scales: {
+              r: {
+                min: 1,
+                max: 4,
+                ticks: { display: false },
+                grid: { color: 'rgba(255,255,255,0.08)' },
+                angleLines: { color: 'rgba(255,255,255,0.08)' },
+                pointLabels: { color: '#aaa', font: { size: 11 } }
               }
             },
-            backgroundColor: 'rgba(20, 20, 20, 0.9)',
-            titleColor: '#fff',
-            bodyColor: '#eee',
-            borderColor: '#333',
-            borderWidth: 1
+            plugins: { legend: { display: false } }
           }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'nearest'
-        },
-        animation: {
-          duration: 1500,
-          easing: 'easeOutQuart'
-        }
+        });
+
+        document.querySelector('.container').style.display = 'none';
+        document.getElementById('radarContainer').style.display = 'block';
+        document.getElementById('chartLoader').style.display = 'none';
+      } catch (e) {
+        console.error(e);
+        alert("生成雷达图时出现小问题喵~ 请刷新页面重试~");
+        document.getElementById('chartLoader').style.display = 'none';
       }
-    });
-    
-    // 滚动到结果区域
-    container.scrollIntoView({ behavior: 'smooth' });
+    }, 600);
   }
 
-  // 分享结果（模拟功能）
-  function shareResults() {
-    const resultText = `我在麋鹿性癖雷达图测试中的结果：\n最强潜质维度是【${dimensions[avgScores ? avgScores.indexOf(Math.max(...avgScores)) : 0]}】\n快来测试你的亲密关系偏好吧！`;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: '麋鹿性癖雷达图测试结果',
-        text: resultText,
-        url: window.location.href
-      }).catch(err => {
-        console.log('分享失败:', err);
-        fallbackShare(resultText);
-      });
-    } else {
-      fallbackShare(resultText);
-    }
-  }
+  // 初始化
+  renderQuestion();
 
-  // 备用分享方法
-  function fallbackShare(text) {
-    const shareInput = document.createElement('textarea');
-    shareInput.value = text + '\n' + window.location.href;
-    document.body.appendChild(shareInput);
-    shareInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(shareInput);
-    
-    alert('结果已复制到剪贴板！你可以粘贴分享给朋友~');
-  }
-
-  // 页面加载完成后初始化
-  document.addEventListener('DOMContentLoaded', initApp);
+  // 按钮绑定
+  document.getElementById('nextBtn').onclick = nextQuestion;
+  document.getElementById('prevBtn').onclick = prevQuestion;
+  document.getElementById('generateBtn').onclick = generateRadar;
 </script>
 </body>
 </html>
