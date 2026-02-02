@@ -3,195 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="麋鹿性癖雷达图测试 - 探索你的亲密关系偏好维度">
-  <title>麋鹿终极性癖雷达图 - 进阶版 喵~</title>
+  <title>麋鹿xp测试by shundebo</title>
   <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
-    :root {
-      --primary: #ff69b4;
-      --secondary: #1e90ff;
-      --accent: #9d4edd;
-      --bg: #0a0a0a;
-      --card-bg: #151515;
-      --text: #eee;
-      --text-secondary: #aaa;
-      --border: #333;
-      --success: #2ecc71;
-      --warning: #f39c12;
-    }
-
-    * { box-sizing: border-box; }
-
-    body { 
-      font-family: system-ui, -apple-system, sans-serif; 
-      background: var(--bg); 
-      color: var(--text); 
-      margin: 0; 
-      padding: 15px;
-      min-height: 100vh;
-    }
-
-    h1 { 
-      color: var(--primary); 
-      text-shadow: 0 0 15px rgba(255,105,180,0.5); 
-      text-align: center; 
-      margin: 10px 0 20px;
-      font-size: 1.8rem;
-    }
-
-    .container { 
-      max-width: 720px; 
-      margin: 0 auto; 
-      background: var(--card-bg); 
-      padding: 25px; 
-      border-radius: 20px; 
-      border: 1px solid var(--border); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    .progress-container { 
-      background: #222; 
-      height: 10px; 
-      border-radius: 5px; 
-      margin: 15px 0; 
-      overflow: hidden;
-    }
-
-    #progressFill { 
-      height: 100%; 
-      width: 0%; 
-      background: linear-gradient(90deg, var(--primary), var(--secondary)); 
-      transition: width 0.4s ease;
-    }
-
-    #progressText { 
-      display: flex; 
-      justify-content: space-between; 
-      font-size: 0.95rem; 
-      color: var(--text-secondary); 
-      margin-bottom: 8px;
-    }
-
-    .question { 
-      font-size: 1.15rem; 
-      margin: 25px 0 30px; 
-      line-height: 1.5;
-      min-height: 3.5rem;
-    }
-
-    .options { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 14px;
-    }
-
-    .options label { 
-      background: #1e1e1e; 
-      padding: 16px 20px; 
-      border-radius: 12px; 
-      cursor: pointer; 
-      transition: all 0.2s; 
-      border: 1px solid var(--border);
-    }
-
-    .options label:hover { 
-      background: #252525; 
-      border-color: var(--primary);
-    }
-
-    .options input { display: none; }
-
-    .options input:checked + span { 
-      color: var(--primary); 
-      font-weight: bold;
-    }
-
-    .nav { 
-      display: flex; 
-      justify-content: space-between; 
-      margin-top: 35px; 
-      gap: 15px;
-    }
-
-    button { 
-      flex: 1; 
-      padding: 14px; 
-      font-size: 1rem; 
-      border: none; 
-      border-radius: 12px; 
-      cursor: pointer; 
-      transition: all 0.2s;
-    }
-
-    #prevBtn { background: #333; color: #ccc; }
-    #nextBtn { background: var(--secondary); color: white; }
-    #generateBtn { 
-      background: linear-gradient(135deg, var(--primary), var(--accent)); 
-      color: white; 
-      box-shadow: 0 4px 15px rgba(255,105,180,0.3);
-    }
-
-    button:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    #radarContainer { 
-      display: none; 
-      margin: 40px auto; 
-      max-width: 800px;
-    }
-
-    #resultHeader { 
-      font-size: 1.6rem; 
-      color: var(--primary); 
-      text-align: center; 
-      margin-bottom: 20px;
-    }
-
-    #dimensionDetails { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
-      gap: 10px; 
-      margin: 25px 0;
-    }
-
-    .dimension-item { 
-      padding: 10px; 
-      background: rgba(255,255,255,0.05); 
-      border-radius: 8px; 
-      text-align: center; 
-      font-size: 0.9rem;
-    }
-
-    .loader { 
-      display: none; 
-      width: 36px; 
-      height: 36px; 
-      margin: 30px auto; 
-      border: 4px solid #333; 
-      border-top: 4px solid var(--primary); 
-      border-radius: 50%; 
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    @media (max-width: 600px) {
-      .nav { flex-direction: column; }
-      button { width: 100%; }
-    }
+    body{font-family:system-ui,sans-serif;background:#000;color:#eee;margin:0;padding:15px;min-height:100vh;text-align:center}
+    h1{color:#ff69b4;margin:20px 0;font-size:2rem;text-shadow:0 0 15px #ff1493}
+    .container{max-width:720px;margin:0 auto;background:#111;padding:25px;border-radius:16px;border:1px solid #333}
+    .gender-select{margin:40px 0}
+    .gender-btn{padding:18px 40px;font-size:1.2rem;margin:15px;border:none;border-radius:12px;cursor:pointer;transition:all .3s}
+    #maleBtn{background:#1e90ff;color:#fff}
+    #femaleBtn{background:#ff69b4;color:#fff}
+    .gender-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(255,105,180,.5)}
+    .progress-container{background:#222;height:8px;border-radius:4px;margin:15px 0;overflow:hidden}
+    #progressFill{height:100%;width:0%;background:linear-gradient(90deg,#ff69b4,#1e90ff);transition:width .4s}
+    #progressText{display:flex;justify-content:space-between;font-size:.95rem;color:#aaa;margin-bottom:8px}
+    .question{font-size:1.15rem;margin:25px 0 30px;line-height:1.5;min-height:3.5rem}
+    .options{display:flex;flex-direction:column;gap:14px}
+    .options label{background:#1e1e1e;padding:16px 20px;border-radius:12px;cursor:pointer;transition:all .2s;border:1px solid #333}
+    .options label:hover{background:#252525;border-color:#ff69b4}
+    .options input{display:none}
+    .options input:checked+span{color:#ff69b4;font-weight:700}
+    .nav{display:flex;justify-content:space-between;margin-top:30px;gap:15px}
+    button{flex:1;padding:14px;font-size:1rem;border:none;border-radius:12px;cursor:pointer;transition:all .2s}
+    #prevBtn{background:#333;color:#ccc}
+    #nextBtn{background:#1e90ff;color:#fff}
+    #generateBtn{background:linear-gradient(135deg,#ff69b4,#9d4edd);color:#fff;box-shadow:0 4px 15px rgba(255,105,180,.3);display:none}
+    button:disabled{opacity:.4;cursor:not-allowed}
+    #radarContainer{display:none;margin:40px auto;max-width:800px;background:#000;padding:20px;border-radius:16px;border:1px solid #444}
+    #resultHeader{font-size:1.6rem;color:#ff69b4;text-align:center;margin-bottom:20px}
+    #dimensionDetails{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:25px 0}
+    .dimension-item{padding:10px;background:rgba(255,255,255,.05);border-radius:8px;text-align:center;font-size:.9rem}
+    .loader{display:none;width:36px;height:36px;margin:30px auto;border:4px solid #333;border-top:4px solid #ff69b4;border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media (max-width:600px){.nav{flex-direction:column}button{width:100%}}
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>麋鹿终极性癖雷达图 喵~</h1>
+<div class="container" id="genderPage">
+  <h1>麋鹿xp测试by shundebo</h1>
+  <p style="font-size:1.2rem;margin:30px 0">请选择你的性别喵~</p>
+  <button class="gender-btn" id="maleBtn">男</button>
+  <button class="gender-btn" id="femaleBtn">女</button>
+</div>
+
+<div class="container" id="quizPage" style="display:none">
+  <h1>麋鹿xp测试by shundebo</h1>
 
   <div id="progressText">
-    <span>第 <span id="currentQuestion">1</span> / 70 题</span>
+    <span>第 <span id="currentQuestion">1</span> / 120 题</span>
     <span id="progressPercentage">1%</span>
   </div>
-  <div class="progress-container">
-    <div id="progressFill"></div>
-  </div>
+  <div class="progress-container"><div id="progressFill"></div></div>
 
   <div class="question" id="qText">正在加载...</div>
   <div class="options" id="qOptions"></div>
@@ -199,21 +62,21 @@
   <div class="nav">
     <button id="prevBtn" disabled>上一题</button>
     <button id="nextBtn">下一题</button>
-    <button id="generateBtn" style="display:none;">查看结果 喵~</button>
+    <button id="generateBtn">生成雷达图 喵~</button>
   </div>
 
-  <div style="text-align:center; margin-top:20px; color:#666; font-size:0.9rem;">
-    <span onclick="resetTest()" style="cursor:pointer; color:var(--primary);">重新开始测试</span>
+  <div style="text-align:center;margin-top:20px;color:#666;font-size:.9rem">
+    <span onclick="resetTest()" style="cursor:pointer;color:#ff69b4">重新开始测试</span>
   </div>
 </div>
 
-<div id="radarContainer">
+<div id="radarContainer" style="display:none">
   <div id="resultHeader"></div>
-  <div style="position:relative; height:400px; margin:30px 0;">
+  <div style="position:relative;height:400px;margin:30px 0">
     <canvas id="radarChart"></canvas>
   </div>
   <div id="dimensionDetails"></div>
-  <div style="text-align:center; margin-top:30px;">
+  <div style="text-align:center;margin-top:30px">
     <button onclick="window.location.reload()">重新测试</button>
   </div>
 </div>
@@ -221,256 +84,431 @@
 <div class="loader" id="chartLoader"></div>
 
 <script>
-const dimensions = [
-  '纯爱','诱导','情调','虚待','差辱','征服','控制','强迫',
-  '保护','受虐','屈辱','臣服','服从','被迫','叛逆','放纵',
-  '暴露','群体','跨性','同性','恋物','NTR','暴虐','调教'
+const dimensions=['纯爱','诱导','情调','虚待','差辱','征服','控制','强迫','保护','受虐','屈辱','臣服','服从','被迫','叛逆','放纵','暴露','群体','跨性','同性','恋物','NTR','暴虐','调教'];
+
+const questionContributions=Array(120).fill().map((_,i)=>i<40?[0,2,8]:i<80?[6,7,10,11,12,13]:[15,16,17,21,22,23]);
+
+const maleQuestions=[
+  {q:"1. 初次见面，你最想怎么接近她？",opts:["A. 温柔微笑打招呼","B. 突然靠近耳边低语","C. 直接牵手带她走","D. 壁咚压墙强势吻她"]},
+  {q:"2. 第一次牵手，你希望怎么握？",opts:["A. 十指相扣慢慢走","B. 用力握住让她有点疼","C. 突然拉她跑起来","D. 反剪她双手押着走"]},
+  {q:"3. 夸她时，你最喜欢用什么语气？",opts:["A. 温柔宠溺说你真可爱","B. 调戏地说你真骚","C. 命令式地说真乖","D. 羞辱地说你就是个小贱货"]},
+  {q:"4. 闻到她体香，你最想怎么做？",opts:["A. 觉得好闻想靠近","B. 心跳加速想埋进去","C. 腿软想抱紧她","D. 兴奋到想直接舔她"]},
+  {q:"5. 摸她头发时，你希望？",opts:["A. 轻轻抚摸很温柔","B. 用力抓着拉近","C. 缠绕手指玩弄","D. 拽着头发控制方向"]},
+  {q:"6. 你最想怎么抱她？",opts:["A. 公主抱温柔托着","B. 熊抱紧紧勒住","C. 从后面环腰扣紧","D. 抱起来抵墙猛亲"]},
+  {q:"7. 亲她脖子时，你偏好？",opts:["A. 轻吻像羽毛","B. 吸吮留下痕迹","C. 咬到轻微疼","D. 用牙齿撕扯般重咬"]},
+  {q:"8. 你想怎么蒙她眼睛？",opts:["A. 温柔蒙上让她安心","B. 有点紧张但兴奋","C. 完全失去控制感","D. 强迫蒙住让她无法反抗"]},
+  {q:"9. 脱她衣服时，你希望？",opts:["A. 慢慢解开有仪式","B. 慢慢剥光她","C. 让她自己脱光展示","D. 粗暴撕开她的衣服"]},
+  {q:"10. 你最想怎么叫她？",opts:["A. 宝贝/小可爱最甜","B. 小骚货最刺激","C. 奴隶/宠物最驯服","D. 贱货/母狗最羞辱"]},
+  {q:"11. 你更喜欢怎么抚摸她大腿？",opts:["A. 指尖轻轻滑过","B. 用力揉捏","C. 指甲刮出红痕","D. 掐到青紫"]},
+  {q:"12. 吻她胸口时，你偏好？",opts:["A. 温柔亲吻","B. 轻咬乳尖","C. 用力吸吮","D. 牙齿撕扯"]},
+  {q:"13. 舔她敏感部位时，你希望？",opts:["A. 缓慢温柔舔弄","B. 快速拨弄","C. 整片区域舔湿","D. 强迫深舔到窒息"]},
+  {q:"14. 手指插入她时，你偏好？",opts:["A. 轻轻浅插","B. 快速抽动","C. 勾弄G点","D. 多根手指猛插"]},
+  {q:"15. 弹她阴蒂时，你希望她什么反应？",opts:["A. 轻微惊讶但爽","B. 全身颤抖","C. 直接高潮边缘","D. 疼到求饶"]},
+  {q:"16. 让她分开双腿给你欣赏时？",opts:["A. 害羞但接受","B. 兴奋想被看","C. 让她主动掰开","D. 强行掰到最大"]},
+  {q:"17. 对镜子play时，你想让她？",opts:["A. 有点尴尬","B. 超级刺激","C. 必须看着自己","D. 被迫看被弄的样子"]},
+  {q:"18. 绑她手腕时，你偏好？",opts:["A. 轻轻扣住","B. 用力扣痕","C. 完全绑死","D. 吊起来无法动"]},
+  {q:"19. 叫她“小骚货”时，你希望她？",opts:["A. 脸红不喜欢","B. 更兴奋","C. 必须更脏","D. 叫母狗才爽"]},
+  {q:"20. 言语羞辱她到什么程度最爽？",opts:["A. 轻微调戏","B. 中度贬低","C. 重度想哭","D. 极端侮辱崩溃"]},
+  {q:"21. 被边缘折磨她多久最爽？",opts:["A. 几分钟受不了","B. 忍很久享受","C. 一直折磨崩溃","D. 折磨到精神失常"]},
+  {q:"22. 把她连续高潮到什么状态？",opts:["A. 一次满足","B. 两三次还能忍","C. 一直做到失神","D. 操到潮吹失禁走不动"]},
+  {q:"23. 对让她潮吹的态度？",opts:["A. 她害羞不想","B. 好奇想试","C. 必须让她潮吹才爽","D. 必须操到她失禁"]},
+  {q:"24. 你更喜欢让她哪种高潮？",opts:["A. 阴蒂最强烈","B. 内部更满足","C. 两者一起爽","D. 必须双重高潮到崩溃"]},
+  {q:"25. 让她高潮的方式？",opts:["A. 只用手指","B. 只用舌头","C. 手指+舌头","D. 必须插入+多重刺激"]},
+  {q:"26. 勾她G点时？",opts:["A. 她很敏感","B. 有点感觉","C. 大力才爽","D. 必须大力到痛爽"]},
+  {q:"27. 插她到最深的感觉？",opts:["A. 浅摩擦喜欢","B. 完全填满满足","C. 越深越好","D. 必须插到子宫口"]},
+  {q:"28. 同时玩她阴蒂+插入？",opts:["A. 她太刺激受不了","B. 超级爽","C. 必须这样高潮","D. 双重到她失神"]},
+  {q:"29. 操她节奏偏好？",opts:["A. 缓慢深插","B. 快速猛撞","C. 先慢后快","D. 狂暴无休止"]},
+  {q:"30. 从后面进入她感觉？",opts:["A. 她有点疼但刺激","B. 占有感超强","C. 她最爱这个姿势","D. 被猛撞到她哭"]},
+  {q:"31. 传教士位时？",opts:["A. 被紧紧抱住","B. 看着眼睛","C. 腿抬高更深","D. 被压到她无法呼吸"]},
+  {q:"32. 让她骑乘时？",opts:["A. 她自己掌控节奏","B. 被从下顶上来","C. 边骑边掐腰","D. 被迫骑到她腿软"]},
+  {q:"33. 更喜欢？",opts:["A. 被压身下","B. 压她身下","C. 轮流主导","D. 被完全压制"]},
+  {q:"34. 做时盯着她眼睛？",opts:["A. 她害羞想躲","B. 亲密兴奋","C. 必须对视","D. 被迫对视到崩溃"]},
+  {q:"35. 做爱中亲吻？",opts:["A. 不断亲嘴","B. 只亲脖子胸","C. 越激烈越好","D. 被吻到她窒息"]},
+  {q:"36. 轻度掐她脖子？",opts:["A. 不能接受","B. 轻轻可以","C. 稍微用力刺激","D. 必须缺氧边缘"]},
+  {q:"37. 打她屁股？",opts:["A. 轻轻拍","B. 发红才爽","C. 越用力越兴奋","D. 打到皮开肉绽"]},
+  {q:"38. 轻度捆绑她？",opts:["A. 不喜欢束缚","B. 手腕绑可以","C. 全身捆期待","D. 吊起来无法动"]},
+  {q:"39. 蜡油滴她？",opts:["A. 怕疼不想","B. 温热刺激","C. 滴敏感部位","D. 全身灼烧"]},
+  {q:"40. 冰块 vs 热感？",opts:["A. 她喜欢冰凉","B. 她喜欢热温暖","C. 冰热交替","D. 冰火两重天到极限"]},
+  {q:"41. 对多人玩她（幻想）？",opts:["A. 完全不能","B. 幻想可以","C. 轻度分享","D. 多人一起很期待"]},
+  {q:"42. 让她被注视 vs 被占有？",opts:["A. 只想一人占有","B. 很多人注视刺激","C. 两者都想要","D. 必须被围观占有"]},
+  {q:"43. 对NTR她？",opts:["A. 完全排斥","B. 幻想有点兴奋","C. 轻度现实","D. 超级喜欢被分享"]},
+  {q:"44. 公开场合偷偷摸她？",opts:["A. 太危险不想","B. 轻微可以","C. 必须有风险","D. 必须当众被玩"]},
+  {q:"45. 在车里/厕所/试衣间干她？",opts:["A. 太尴尬不行","B. 刺激但怕抓","C. 超级想试","D. 必须在这些地方被干"]},
+  {q:"46. 录她/拍她？",opts:["A. 完全不能","B. 只给自己看","C. 被留着兴奋","D. 想被传播才爽"]},
+  {q:"47. 真实 vs 言语幻想？",opts:["A. 只幻想","B. 轻度真实","C. 必须真实","D. 必须全部真实发生"]},
+  {q:"48. 角色扮演深度？",opts:["A. 简单服装","B. 要台词剧情","C. 完全沉浸","D. 必须演到现实分不清"]},
+  {q:"49. 她呻吟声？",opts:["A. 可爱娇喘","B. 低沉性感","C. 哭腔求饶","D. 崩溃尖叫"]},
+  {q:"50. 对她哭腔/求饶声？",opts:["A. 有点心软","B. 更兴奋想欺负","C. 必须听到","D. 必须哭到失声"]},
+  {q:"51. 她高潮时声音？",opts:["A. 咬唇忍住可爱","B. 放肆叫出来棒","C. 哭着高潮刺激","D. 尖叫到破音"]},
+  {q:"52. 射她里面？",opts:["A. 必须戴套","B. 幻想很爽","C. 超级满足","D. 必须内射到溢出"]},
+  {q:"53. 内射后继续？",opts:["A. 太敏感不行","B. 想试连续","C. 必须一直做到溢出","D. 必须干到子宫灌满"]},
+  {q:"54. 射她哪个位置最喜欢？",opts:["A. 胸上/肚子","B. 脸上刺激","C. 嘴里吞咽","D. 全身涂满"]},
+  {q:"55. 对精液态度？",opts:["A. 完全不能","B. 可以涂抹","C. 吞咽兴奋","D. 被射满全身才爽"]},
+  {q:"56. 安全套内射 vs 无套？",opts:["A. 必须戴套","B. 戴套内射也行","C. 无套最真实","D. 必须无套灌满"]},
+  {q:"57. 事后抱着她清理？",opts:["A. 超级温柔想要","B. 害羞接受","C. 必须舔干净","D. 必须舔到一滴不剩"]},
+  {q:"58. 做完亲她额头？",opts:["A. 很温暖喜欢","B. 太甜腻","C. 希望更粗暴","D. 必须被羞辱到底"]},
+  {q:"59. 夸她“好棒”“真乖”？",opts:["A. 她害羞开心","B. 她有被驯服感","C. 必须一直夸","D. 必须被羞辱夸奖"]},
+  {q:"60. 事后轻度羞辱她？",opts:["A. 她脸红否认","B. 她更兴奋想再来","C. 必须重度羞辱","D. 必须羞辱到她哭"]},
+  {q:"61. 一次性很久 vs 多次？",opts:["A. 一次很久满足","B. 多次更爽","C. 做到天亮","D. 一直干到崩溃"]},
+  {q:"62. 把她操到走不动？",opts:["A. 她怕疼不想","B. 她有点期待","C. 必须这样才完","D. 必须操到她爬不起来"]},
+  {q:"63. 抱她起来边走边插？",opts:["A. 太难","B. 占有感强","C. 必须试一次","D. 必须边走边干到她失神"]},
+  {q:"64. 抵墙上干她？",opts:["A. 浪漫不实用","B. 很刺激想试","C. 最喜欢这个场景","D. 必须抵墙干到她腿软"]},
+  {q:"65. 哪个场景最有感觉？",opts:["A. 床上安全","B. 办公桌/厨房","C. 浴室湿身","D. 任何公开地方"]},
+  {q:"66. 冬天被窝 vs 夏天汗湿？",opts:["A. 冬天温暖","B. 夏天汗湿色","C. 两者都爱","D. 必须汗湿黏腻到极限"]},
+  {q:"67. 对她气味癖（原味）？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"68. 她穿你衣服/内裤？",opts:["A. 觉得可爱","B. 瞬间兴奋","C. 必须穿我的内衣","D. 必须穿我的脏内裤"]},
+  {q:"69. 她用你丝袜/内裤自慰给你看？",opts:["A. 太羞耻不行","B. 超级刺激想看","C. 必须边看边玩","D. 必须看着她射在上面"]},
+  {q:"70. 你希望怎么对待她？",opts:["A. 温柔宠爱","B. 激烈有底线","C. 狠狠弄坏","D. 彻底毁坏无修复"]},
+  {q:"71. 言语羞辱她到什么程度最爽？",opts:["A. 轻微调戏","B. 中度贬低","C. 重度想哭","D. 极端侮辱崩溃"]},
+  {q:"72. 把她连续高潮到什么状态？",opts:["A. 一次满足","B. 两三次还能忍","C. 一直做到失神","D. 操到潮吹失禁走不动"]},
+  {q:"73. 被多人同时玩弄她？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须被填满所有洞"]},
+  {q:"74. 对录她/拍她传播？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存兴奋","D. 求求你发到网上"]},
+  {q:"75. 把她操到失禁？",opts:["A. 她害怕","B. 她好奇","C. 她想试","D. 必须她失禁才满足"]},
+  {q:"76. 对公开场合玩她？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须在人群中当众干她"]},
+  {q:"77. 被多人围观她时？",opts:["A. 完全排斥","B. 幻想可以","C. 可以轻度分享","D. 求求你们都来玩她"]},
+  {q:"78. 对NTR她的想法？",opts:["A. 绝对不能","B. 幻想有点兴奋","C. 轻度现实","D. 必须被别人当众占有她"]},
+  {q:"79. 被她彻底弄坏的感觉？",opts:["A. 害怕不敢","B. 有点期待","C. 必须到极限","D. 求求你把我毁掉"]},
+  {q:"80. 最终幻想结局？",opts:["A. 幸福相伴","B. 激烈但安全","C. 玩坏后温柔修复","D. 永久成为你的专属肉便器"]},
+  {q:"81. 绑她多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜无法动弹"]},
+  {q:"82. 打她屁股到什么程度？",opts:["A. 轻轻拍","B. 发红","C. 肿起来","D. 打到皮开肉绽"]},
+  {q:"83. 蜡油滴她哪里最刺激？",opts:["A. 手臂","B. 胸口","C. 敏感部位","D. 全身灼烧"]},
+  {q:"84. 多人同时插她？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须填满所有洞"]},
+  {q:"85. 对她气味癖深度？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"86. 录她传播？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存","D. 求求你发到网上"]},
+  {q:"87. 把她操到失禁？",opts:["A. 她害怕","B. 她好奇","C. 她想试","D. 必须她失禁才满足"]},
+  {q:"88. 公开场合玩她？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须当众被干"]},
+  {q:"89. 被多人围观她？",opts:["A. 完全排斥","B. 幻想可以","C. 可以轻度分享","D. 求求你们都来玩她"]},
+  {q:"90. 对NTR她的想法？",opts:["A. 绝对不能","B. 幻想有点兴奋","C. 轻度现实","D. 必须被别人当众占有她"]},
+  {q:"91. 被她彻底弄坏的感觉？",opts:["A. 害怕不敢","B. 有点期待","C. 必须到极限","D. 求求你把我毁掉"]},
+  {q:"92. 最终幻想结局？",opts:["A. 幸福相伴","B. 激烈但安全","C. 玩坏后温柔修复","D. 永久成为你的专属肉便器"]},
+  {q:"93. 绑她多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜无法动"]},
+  {q:"94. 打她屁股到什么程度？",opts:["A. 轻轻拍","B. 发红","C. 肿起来","D. 打到皮开肉绽"]},
+  {q:"95. 蜡油滴她哪里最刺激？",opts:["A. 手臂","B. 胸口","C. 敏感部位","D. 全身灼烧"]},
+  {q:"96. 多人同时插她？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须填满所有洞"]},
+  {q:"97. 对她气味癖深度？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"98. 录她传播？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存","D. 求求你发到网上"]},
+  {q:"99. 把她操到失禁？",opts:["A. 她害怕","B. 她好奇","C. 她想试","D. 必须她失禁才满足"]},
+  {q:"100. 公开场合玩她？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须当众被干"]},
+  {q:"101. 被多人围观她？",opts:["A. 完全排斥","B. 幻想可以","C. 可以轻度分享","D. 求求你们都来玩她"]},
+  {q:"102. 对NTR她的想法？",opts:["A. 绝对不能","B. 幻想有点兴奋","C. 轻度现实","D. 必须被别人当众占有她"]},
+  {q:"103. 被她彻底弄坏的感觉？",opts:["A. 害怕不敢","B. 有点期待","C. 必须到极限","D. 求求你把我毁掉"]},
+  {q:"104. 最终幻想结局？",opts:["A. 幸福相伴","B. 激烈但安全","C. 玩坏后温柔修复","D. 永久成为你的专属肉便器"]},
+  {q:"105. 绑她多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜无法动"]},
+  {q:"106. 打她屁股到什么程度？",opts:["A. 轻轻拍","B. 发红","C. 肿起来","D. 打到皮开肉绽"]},
+  {q:"107. 蜡油滴她哪里最刺激？",opts:["A. 手臂","B. 胸口","C. 敏感部位","D. 全身灼烧"]},
+  {q:"108. 多人同时插她？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须填满所有洞"]},
+  {q:"109. 对她气味癖深度？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"110. 录她传播？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存","D. 求求你发到网上"]},
+  {q:"111. 把她操到失禁？",opts:["A. 她害怕","B. 她好奇","C. 她想试","D. 必须她失禁才满足"]},
+  {q:"112. 公开场合玩她？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须当众被干"]},
+  {q:"113. 被多人围观她？",opts:["A. 完全排斥","B. 幻想可以","C. 可以轻度分享","D. 求求你们都来玩她"]},
+  {q:"114. 对NTR她的想法？",opts:["A. 绝对不能","B. 幻想有点兴奋","C. 轻度现实","D. 必须被别人当众占有她"]},
+  {q:"115. 被她彻底弄坏的感觉？",opts:["A. 害怕不敢","B. 有点期待","C. 必须到极限","D. 求求你把我毁掉"]},
+  {q:"116. 最终幻想结局？",opts:["A. 幸福相伴","B. 激烈但安全","C. 玩坏后温柔修复","D. 永久成为你的专属肉便器"]},
+  {q:"117. 绑她多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜无法动"]},
+  {q:"118. 打她屁股到什么程度？",opts:["A. 轻轻拍","B. 发红","C. 肿起来","D. 打到皮开肉绽"]},
+  {q:"119. 蜡油滴她哪里最刺激？",opts:["A. 手臂","B. 胸口","C. 敏感部位","D. 全身灼烧"]},
+  {q:"120. 你希望怎么彻底毁掉她？",opts:["A. 温柔守护","B. 激烈但有底线","C. 狠狠弄坏再修复","D. 无底线、无修复、彻底毁坏她"]}
 ];
 
-const questionContributions = [
-  [0,2],[6,7],[21,15],[9,10],[4,22],[8,11],[0,21],[12,6],[2,16],[0,23],
-  [2,9],[0,1],[2,5],[23,6],[9,22],[11,16],[2,16],[12,6],[4,23],[2,4],
-  [0,23],[2,15],[0,1],[2,5],[0,23],[5,22],[6,7],[9,22],[5,23],[6,9],
-  [0,2],[11,6],[5,6],[0,2],[0,2],[9,22],[4,22],[11,12],[9,22],[2,5],
-  [17,15],[16,0],[21,17],[16,17],[16,21],[16,21],[0,1],[23,5],[0,1],[9,10],
-  [0,1],[6,7],[22,15],[21,0],[21,0],[8,0],[0,8],[0,4],[0,23],[4,9],
-  [2,15],[9,22],[5,6],[6,5],[0,16],[21,15],[21,16],[21,6],[16,21],[17,21,22]
+const femaleQuestions=[
+  {q:"1. 初次见面，你最希望他怎么接近你？",opts:["A. 温柔微笑轻声问好","B. 突然靠近耳边低语","C. 直接牵手带你走","D. 强势壁咚压在墙上"]},
+  {q:"2. 第一次牵手，你希望他怎么握？",opts:["A. 十指相扣慢慢走","B. 用力握住有点疼","C. 突然拉你跑起来","D. 反剪双手押着走"]},
+  {q:"3. 他夸你时，你最喜欢什么语气？",opts:["A. 温柔宠溺说你真可爱","B. 调戏地说你真骚","C. 命令式地说真乖","D. 羞辱地说你就是个小贱货"]},
+  {q:"4. 闻到他体味时，你最想怎么做？",opts:["A. 觉得好闻想靠近","B. 心跳加速想埋进去","C. 腿软想被抱紧","D. 兴奋到想直接舔他"]},
+  {q:"5. 他摸你头发时，你希望？",opts:["A. 轻轻抚摸很温柔","B. 用力抓着拉近","C. 缠绕手指玩弄","D. 拽着头发控制方向"]},
+  {q:"6. 你最喜欢被他怎么抱？",opts:["A. 公主抱温柔托着","B. 熊抱紧紧勒住","C. 从后面环腰扣紧","D. 抱起来抵墙猛亲"]},
+  {q:"7. 他亲你脖子时，你偏好？",opts:["A. 轻吻像羽毛","B. 吸吮留下痕迹","C. 咬到轻微疼","D. 用牙齿撕扯般重咬"]},
+  {q:"8. 被他蒙眼时，你更想？",opts:["A. 安心享受未知","B. 有点紧张但兴奋","C. 完全失去控制感","D. 被强迫蒙住无法反抗"]},
+  {q:"9. 他脱你衣服时，你希望？",opts:["A. 慢慢解开有仪式","B. 慢慢剥光你","C. 自己主动脱光展示","D. 粗暴撕开你的衣服"]},
+  {q:"10. 他叫你昵称时，你最喜欢？",opts:["A. 宝贝/小可爱最甜","B. 小骚货最刺激","C. 奴隶/宠物最驯服","D. 贱货/母狗最羞辱"]},
+  {q:"11. 他抚摸你大腿时，你希望？",opts:["A. 指尖轻轻滑过","B. 用力揉捏","C. 指甲刮出红痕","D. 掐到青紫"]},
+  {q:"12. 他吻你胸口时，你偏好？",opts:["A. 温柔亲吻","B. 轻咬乳尖","C. 用力吸吮","D. 牙齿撕扯"]},
+  {q:"13. 被他舔敏感部位时，你希望？",opts:["A. 缓慢温柔舔弄","B. 快速拨弄","C. 整片区域舔湿","D. 强迫深舔到窒息"]},
+  {q:"14. 他手指插入时，你偏好？",opts:["A. 轻轻浅插","B. 快速抽动","C. 勾弄G点","D. 多根手指猛插"]},
+  {q:"15. 被他弹阴蒂时，你希望？",opts:["A. 轻微惊讶但爽","B. 全身颤抖","C. 直接高潮边缘","D. 疼到求饶"]},
+  {q:"16. 被他分开双腿欣赏时？",opts:["A. 害羞但接受","B. 兴奋想被看","C. 主动掰开","D. 被强行掰到最大"]},
+  {q:"17. 对镜子play时，你想？",opts:["A. 有点尴尬","B. 超级刺激","C. 必须看着自己","D. 被迫看被弄的样子"]},
+  {q:"18. 被他绑手腕时？",opts:["A. 轻轻扣住","B. 用力扣痕","C. 完全绑死","D. 吊起来无法动"]},
+  {q:"19. 被他叫“小骚货”时？",opts:["A. 脸红不喜欢","B. 更兴奋","C. 必须更脏","D. 叫母狗才爽"]},
+  {q:"20. 言语羞辱到什么程度最爽？",opts:["A. 轻微调戏","B. 中度贬低","C. 重度想哭","D. 极端侮辱崩溃"]},
+  {q:"21. 被边缘折磨多久最爽？",opts:["A. 几分钟受不了","B. 忍很久享受","C. 一直折磨崩溃","D. 折磨到精神失常"]},
+  {q:"22. 连续高潮到什么状态？",opts:["A. 一次满足","B. 两三次还能忍","C. 一直做到失神","D. 操到潮吹失禁走不动"]},
+  {q:"23. 对潮吹的态度？",opts:["A. 害羞不想","B. 好奇想试","C. 必须潮吹才爽","D. 必须被操到失禁"]},
+  {q:"24. 你更偏好哪种高潮？",opts:["A. 阴蒂最强烈","B. 内部更满足","C. 两者一起爽","D. 必须双重高潮到崩溃"]},
+  {q:"25. 让你高潮的方式？",opts:["A. 只用手指","B. 只用舌头","C. 手指+舌头","D. 必须插入+多重刺激"]},
+  {q:"26. G点被刺激时？",opts:["A. 很敏感","B. 有点感觉","C. 大力才爽","D. 必须大力到痛爽"]},
+  {q:"27. 被填满的感觉？",opts:["A. 浅摩擦喜欢","B. 完全填满满足","C. 越深越好","D. 必须插到子宫口"]},
+  {q:"28. 同时刺激阴蒂+插入？",opts:["A. 太刺激受不了","B. 超级爽","C. 必须这样高潮","D. 双重到失神"]},
+  {q:"29. 抽插节奏偏好？",opts:["A. 缓慢深插","B. 快速猛撞","C. 先慢后快","D. 狂暴无休止"]},
+  {q:"30. 从后面进入的感觉？",opts:["A. 有点疼但刺激","B. 占有感超强","C. 最爱这个姿势","D. 被猛撞到哭"]},
+  {q:"31. 传教士位时？",opts:["A. 被紧紧抱住","B. 看着眼睛","C. 腿抬高更深","D. 被压到无法呼吸"]},
+  {q:"32. 骑乘位时？",opts:["A. 自己掌控节奏","B. 被从下顶上来","C. 边骑边掐腰","D. 被迫骑到腿软"]},
+  {q:"33. 更喜欢？",opts:["A. 被压身下","B. 压对方身下","C. 轮流主导","D. 被完全压制"]},
+  {q:"34. 做时被盯着眼睛？",opts:["A. 害羞想躲","B. 亲密兴奋","C. 必须对视","D. 被迫对视到崩溃"]},
+  {q:"35. 做爱中亲吻？",opts:["A. 不断亲嘴","B. 只亲脖子胸","C. 越激烈越好","D. 被吻到窒息"]},
+  {q:"36. 轻度掐脖子？",opts:["A. 不能接受","B. 轻轻可以","C. 稍微用力刺激","D. 必须缺氧边缘"]},
+  {q:"37. 被打屁股？",opts:["A. 轻轻拍","B. 发红才爽","C. 越用力越兴奋","D. 打到皮开肉绽"]},
+  {q:"38. 轻度捆绑？",opts:["A. 不喜欢束缚","B. 手腕绑可以","C. 全身捆期待","D. 吊起来无法动"]},
+  {q:"39. 蜡油滴落？",opts:["A. 怕疼不想","B. 温热刺激","C. 滴敏感部位","D. 全身灼烧"]},
+  {q:"40. 冰块 vs 热感？",opts:["A. 喜欢冰凉","B. 喜欢热温暖","C. 冰热交替","D. 冰火两重天到极限"]},
+  {q:"41. 对多人场景（幻想）？",opts:["A. 完全不能","B. 幻想可以","C. 轻度分享","D. 多人一起很期待"]},
+  {q:"42. 被注视 vs 被占有？",opts:["A. 只想一人占有","B. 很多人注视刺激","C. 两者都想要","D. 必须被围观占有"]},
+  {q:"43. 对NTR？",opts:["A. 完全排斥","B. 幻想有点兴奋","C. 轻度现实","D. 超级喜欢被分享"]},
+  {q:"44. 公开场合偷偷摸摸？",opts:["A. 太危险不想","B. 轻微可以","C. 必须有风险","D. 必须当众被玩"]},
+  {q:"45. 在车里/厕所/试衣间？",opts:["A. 太尴尬不行","B. 刺激但怕抓","C. 超级想试","D. 必须在这些地方被干"]},
+  {q:"46. 被录像/拍照？",opts:["A. 完全不能","B. 只给自己看","C. 被留着兴奋","D. 想被传播才爽"]},
+  {q:"47. 真实 vs 言语幻想？",opts:["A. 只幻想","B. 轻度真实","C. 必须真实","D. 必须全部真实发生"]},
+  {q:"48. 角色扮演深度？",opts:["A. 简单服装","B. 要台词剧情","C. 完全沉浸","D. 必须演到现实分不清"]},
+  {q:"49. 对方呻吟声？",opts:["A. 可爱娇喘","B. 低沉性感","C. 哭腔求饶","D. 崩溃尖叫"]},
+  {q:"50. 对哭腔/求饶声？",opts:["A. 有点心软","B. 更兴奋想欺负","C. 必须听到","D. 必须哭到失声"]},
+  {q:"51. 对方高潮时声音？",opts:["A. 咬唇忍住可爱","B. 放肆叫出来棒","C. 哭着高潮刺激","D. 尖叫到破音"]},
+  {q:"52. 被射在里面？",opts:["A. 必须戴套","B. 幻想很爽","C. 超级满足","D. 必须内射到溢出"]},
+  {q:"53. 内射后继续？",opts:["A. 太敏感不行","B. 想试连续","C. 必须一直做到溢出","D. 必须干到子宫灌满"]},
+  {q:"54. 被射在哪个位置最喜欢？",opts:["A. 胸上/肚子","B. 脸上刺激","C. 嘴里吞咽","D. 全身涂满"]},
+  {q:"55. 对精液态度？",opts:["A. 完全不能","B. 可以涂抹","C. 吞咽兴奋","D. 被射满全身才爽"]},
+  {q:"56. 安全套内射 vs 无套？",opts:["A. 必须戴套","B. 戴套内射也行","C. 无套最真实","D. 必须无套灌满"]},
+  {q:"57. 事后被抱着清理？",opts:["A. 超级温柔想要","B. 害羞接受","C. 必须舔干净","D. 必须舔到一滴不剩"]},
+  {q:"58. 做完被亲额头？",opts:["A. 很温暖喜欢","B. 太甜腻","C. 希望更粗暴","D. 必须被羞辱到底"]},
+  {q:"59. 被夸“好棒”“真乖”？",opts:["A. 害羞开心","B. 有被驯服感","C. 必须一直夸","D. 必须被羞辱夸奖"]},
+  {q:"60. 事后轻度羞辱？",opts:["A. 脸红否认","B. 更兴奋想再来","C. 必须重度羞辱","D. 必须羞辱到哭"]},
+  {q:"61. 一次性很久 vs 多次？",opts:["A. 一次很久满足","B. 多次更爽","C. 做到天亮","D. 一直干到崩溃"]},
+  {q:"62. 被操到走不动？",opts:["A. 怕疼不想","B. 有点期待","C. 必须这样才完","D. 必须操到爬不起来"]},
+  {q:"63. 被抱起来边走边插？",opts:["A. 太难","B. 占有感强","C. 必须试一次","D. 必须边走边干到失神"]},
+  {q:"64. 被抵墙上做？",opts:["A. 浪漫不实用","B. 很刺激想试","C. 最喜欢这个场景","D. 必须抵墙干到腿软"]},
+  {q:"65. 哪个场景最有感觉？",opts:["A. 床上安全","B. 办公桌/厨房","C. 浴室湿身","D. 任何公开地方"]},
+  {q:"66. 冬天被窝 vs 夏天汗湿？",opts:["A. 冬天温暖","B. 夏天汗湿色","C. 两者都爱","D. 必须汗湿黏腻到极限"]},
+  {q:"67. 对气味癖（原味）？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"68. 对方穿你衣服/内裤？",opts:["A. 觉得可爱","B. 瞬间兴奋","C. 必须穿我的内衣","D. 必须穿我的脏内裤"]},
+  {q:"69. 对方用你丝袜/内裤自慰给你看？",opts:["A. 太羞耻不行","B. 超级刺激想看","C. 必须边看边玩","D. 必须看着他射在上面"]},
+  {q:"70. 你希望被怎么对待？",opts:["A. 温柔宠爱","B. 激烈有底线","C. 狠狠弄坏","D. 彻底毁坏无修复"]},
+  {q:"71. 被言语羞辱到什么程度最爽？",opts:["A. 轻微调戏","B. 中度贬低","C. 重度想哭","D. 极端侮辱崩溃"]},
+  {q:"72. 被连续高潮到什么状态？",opts:["A. 一次满足","B. 两三次还能忍","C. 一直做到失神","D. 操到潮吹失禁走不动"]},
+  {q:"73. 被多人同时玩弄？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须被填满所有洞"]},
+  {q:"74. 对被录像传播的态度？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存兴奋","D. 求求你发到网上"]},
+  {q:"75. 被操到失禁的感觉？",opts:["A. 害怕","B. 好奇","C. 想试","D. 必须失禁才满足"]},
+  {q:"76. 对公开场合被干？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须当众被干"]},
+  {q:"77. 被多人围观时？",opts:["A. 完全排斥","B. 幻想可以","C. 可以轻度分享","D. 求求你们都来玩我"]},
+  {q:"78. 对NTR的真实想法？",opts:["A. 绝对不能","B. 幻想有点兴奋","C. 轻度现实","D. 必须被别人当众占有"]},
+  {q:"79. 被彻底弄坏的幻想？",opts:["A. 害怕不敢","B. 有点期待","C. 必须到极限","D. 求求你把我毁掉"]},
+  {q:"80. 最终希望的结局？",opts:["A. 幸福相伴","B. 激烈但安全","C. 玩坏后温柔修复","D. 永久成为肉便器"]},
+  {q:"81. 被绑起来多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜无法动弹"]},
+  {q:"82. 被打屁股到什么程度？",opts:["A. 轻轻拍","B. 发红","C. 肿起来","D. 打到皮开肉绽"]},
+  {q:"83. 蜡油滴在哪最刺激？",opts:["A. 手臂","B. 胸口","C. 敏感部位","D. 全身灼烧"]},
+  {q:"84. 被多人同时插入？",opts:["A. 完全不行","B. 幻想可以","C. 试一次","D. 必须被填满所有洞"]},
+  {q:"85. 对气味癖的深度？",opts:["A. 完全不能","B. 轻微体味","C. 原味兴奋","D. 必须闻到极限味道"]},
+  {q:"86. 被录像传播？",opts:["A. 绝不可能","B. 只给自己看","C. 被留存","D. 求求你发到网上"]},
+  {q:"87. 被操到失禁？",opts:["A. 害怕","B. 好奇","C. 想试","D. 必须失禁才满足"]},
+  {q:"88. 公开场合被玩？",opts:["A. 绝不敢","B. 偷偷摸摸","C. 轻度风险","D. 必须当众被干"]},
+  {q:"89. 被多人围观？",opts:["A. 排斥","B. 幻想","C. 轻度分享","D. 都来玩我"]},
+  {q:"90. 对NTR的想法？",opts:["A. 绝对不能","B. 幻想兴奋","C. 轻度现实","D. 必须被别人占有"]},
+  {q:"91. 被彻底弄坏的感觉？",opts:["A. 害怕","B. 期待","C. 到极限","D. 求求毁掉我"]},
+  {q:"92. 最终幻想结局？",opts:["A. 幸福","B. 激烈安全","C. 修复","D. 永久肉便器"]},
+  {q:"93. 被绑多久最爽？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜"]},
+  {q:"94. 被打屁股程度？",opts:["A. 轻轻","B. 发红","C. 肿","D. 皮开肉绽"]},
+  {q:"95. 蜡油哪里？",opts:["A. 手臂","B. 胸口","C. 敏感","D. 全身"]},
+  {q:"96. 多人插入？",opts:["A. 不行","B. 幻想","C. 试一次","D. 填满"]},
+  {q:"97. 气味深度？",opts:["A. 不能","B. 轻微","C. 兴奋","D. 极限"]},
+  {q:"98. 录像传播？",opts:["A. 不可能","B. 自己看","C. 留存","D. 发网上"]},
+  {q:"99. 被操失禁？",opts:["A. 害怕","B. 好奇","C. 想试","D. 必须失禁"]},
+  {q:"100. 公开被玩？",opts:["A. 不敢","B. 偷偷","C. 风险","D. 当众干"]},
+  {q:"101. 被多人围观？",opts:["A. 排斥","B. 幻想","C. 分享","D. 都来玩"]},
+  {q:"102. NTR？",opts:["A. 不能","B. 幻想","C. 轻度","D. 被占有"]},
+  {q:"103. 被弄坏？",opts:["A. 害怕","B. 期待","C. 极限","D. 毁掉"]},
+  {q:"104. 结局？",opts:["A. 幸福","B. 激烈安全","C. 修复","D. 永久肉便器"]},
+  {q:"105. 被绑多久？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜"]},
+  {q:"106. 被打程度？",opts:["A. 轻轻","B. 发红","C. 肿","D. 皮开肉绽"]},
+  {q:"107. 蜡油哪里？",opts:["A. 手臂","B. 胸口","C. 敏感","D. 全身"]},
+  {q:"108. 多人插入？",opts:["A. 不行","B. 幻想","C. 试一次","D. 填满"]},
+  {q:"109. 气味深度？",opts:["A. 不能","B. 轻微","C. 兴奋","D. 极限"]},
+  {q:"110. 录像传播？",opts:["A. 不可能","B. 自己看","C. 留存","D. 发网上"]},
+  {q:"111. 被操失禁？",opts:["A. 害怕","B. 好奇","C. 想试","D. 必须失禁"]},
+  {q:"112. 公开被玩？",opts:["A. 不敢","B. 偷偷","C. 风险","D. 当众干"]},
+  {q:"113. 被多人围观？",opts:["A. 排斥","B. 幻想","C. 分享","D. 都来玩"]},
+  {q:"114. NTR？",opts:["A. 不能","B. 幻想","C. 轻度","D. 被占有"]},
+  {q:"115. 被弄坏？",opts:["A. 害怕","B. 期待","C. 极限","D. 毁掉"]},
+  {q:"116. 结局？",opts:["A. 幸福","B. 激烈安全","C. 修复","D. 永久肉便器"]},
+  {q:"117. 被绑多久？",opts:["A. 几分钟","B. 半小时","C. 几小时","D. 整夜"]},
+  {q:"118. 被打程度？",opts:["A. 轻轻","B. 发红","C. 肿","D. 皮开肉绽"]},
+  {q:"119. 蜡油哪里？",opts:["A. 手臂","B. 胸口","C. 敏感","D. 全身"]},
+  {q:"120. 你希望被怎么彻底毁掉？",opts:["A. 温柔守护","B. 激烈但有底线","C. 狠狠弄坏再修复","D. 无底线、无修复、彻底毁坏"]}
 ];
 
-const questions = [
-  {q:"1. 你更喜欢对方怎么开始亲吻？",opts:["A. 温柔轻触慢慢深入","B. 突然偷袭用力舌吻","C. 先亲脸颊再慢慢移到唇","D. 被含住下唇拉扯到发麻"]},
-  {q:"2. 舌吻时你最想要的感觉？",opts:["A. 温柔缠绵交换呼吸","B. 有点侵略互相追逐","C. 对方完全主导你被动","D. 激烈到喘不过气想哭"]},
-  {q:"3. 对方穿黑丝/丝袜时你的反应？",opts:["A. 心动但能忍","B. 瞬间想上手摸","C. 脑子直接空白只想扑倒","D. 完全没感觉"]},
-  {q:"4. 被咬耳朵时你希望？",opts:["A. 轻轻啃一下就放开","B. 用牙齿慢慢磨耳垂","C. 边咬边吸吮到发麻","D. 完全不喜欢被咬"]},
-  {q:"5. 对方抚摸背部你更喜欢？",opts:["A. 指尖轻轻像羽毛划过","B. 用指甲稍微刮出红痕","C. 整只手掌用力揉捏","D. 直接抓到皮肤发疼"]},
-  {q:"6. 被从后面抱住抬下巴？",opts:["A. 超级有安全感","B. 会瞬间腿软兴奋","C. 有点害怕但又期待","D. 完全不喜欢这种控制"]},
-  {q:"7. 闻到对方脖颈/锁骨味道？",opts:["A. 觉得好闻但也就那样","B. 会心跳加速想靠近","C. 直接腿软想埋进去","D. 没特别感觉"]},
-  {q:"8. 你更想在play中蒙眼？",opts:["A. 被蒙眼失去视觉","B. 亲手蒙住对方的眼睛","C. 双方都不蒙保持对视","D. 轮流蒙眼玩"]},
-  {q:"9. 脱衣服的过程偏好？",opts:["A. 慢慢一件件解开很有仪式感","B. 被对方粗暴直接扯开","C. 自己主动脱给对方看","D. 对方帮你脱到一半停住逗你"]},
-  {q:"10. 对方在耳边叫你名字？",opts:["A. 会觉得很亲密","B. 瞬间起鸡皮疙瘩兴奋","C. 希望叫得更色情一点","D. 没什么特别反应"]},
-  {q:"11. 被轻轻咬大腿内侧？",opts:["A. 痒痒的但舒服","B. 会颤抖想夹紧腿","C. 直接湿掉求更多","D. 不喜欢被咬那里"]},
-  {q:"12. 对方含住乳尖的感觉？",opts:["A. 温柔舔弄就够","B. 轻吸会让我发抖","C. 用力吸吮到疼才爽","D. 完全没反应"]},
-  {q:"13. 被舔敏感点时你希望？",opts:["A. 慢速温柔画圈","B. 来回快速拨弄","C. 整片区域舔到湿透","D. 不喜欢被舔"]},
-  {q:"14. 对方用手指刺激时？",opts:["A. 轻轻按压就好","B. 快速揉搓到发麻","C. 插进去勾弄最敏感点","D. 只在外侧玩就够"]},
-  {q:"15. 被轻轻弹那里会？",opts:["A. 惊讶但有点爽","B. 全身一颤想躲","C. 直接高潮边缘","D. 讨厌这种刺激"]},
-  {q:"16. 被分开双腿欣赏时？",opts:["A. 害羞但接受","B. 超级兴奋想被看","C. 主动自己掰开展示","D. 不喜欢被这样看"]},
-  {q:"17. 对镜子play的态度？",opts:["A. 有点尴尬但好奇","B. 超级刺激会更湿","C. 必须看着否则不爽","D. 完全不想看"]},
-  {q:"18. 被束缚手腕时？",opts:["A. 轻轻扣住就行","B. 用力扣到留痕","C. 完全绑起来动不了","D. 不喜欢被绑"]},
-  {q:"19. 被叫“小骚货”时？",opts:["A. 脸红但不喜欢","B. 会更兴奋","C. 必须叫得更脏才行","D. 完全没感觉"]},
-  {q:"20. 言语羞辱你能接受？",opts:["A. 轻微调戏就好","B. 中度贬低很爽","C. 重度羞辱到想哭","D. 完全不能接受"]},
-  {q:"21. 被边缘（edging）折磨时？",opts:["A. 几分钟就受不了","B. 能忍很久很享受","C. 想被一直折磨到崩溃","D. 不喜欢被憋着"]},
-  {q:"22. 连续高潮到失神？",opts:["A. 一次就够","B. 两三次还能忍","C. 一直做到失神才满足","D. 高潮太多次会怕"]},
-  {q:"23. 对潮吹的态度？",opts:["A. 很害羞不想","B. 好奇想试试","C. 必须潮吹才算爽","D. 完全没兴趣"]},
-  {q:"24. 你更偏好哪种高潮？",opts:["A. 阴蒂高潮最强烈","B. 阴道内部高潮更满足","C. 两者一起最爽","D. 随便哪种都行"]},
-  {q:"25. 让你高潮的方式？",opts:["A. 只用手指","B. 只用舌头","C. 手指+舌头一起","D. 必须有插入才行"]},
-  {q:"26. G点被刺激时？",opts:["A. 很敏感容易高潮","B. 有点感觉但不强","C. 必须大力刺激才爽","D. 几乎没感觉"]},
-  {q:"27. 被填满的感觉？",opts:["A. 浅浅摩擦更喜欢","B. 完全填满才满足","C. 越深越好","D. 不喜欢被填满"]},
-  {q:"28. 同时刺激阴蒂+插入？",opts:["A. 太刺激受不了","B. 超级爽想一直这样","C. 必须这样才高潮","D. 不喜欢双重刺激"]},
-  {q:"29. 抽插节奏你偏好？",opts:["A. 缓慢深插","B. 快速猛撞","C. 先慢后快变速","D. 节奏随便都行"]},
-  {q:"30. 从后面进入的感觉？",opts:["A. 有点疼但刺激","B. 超级有被占有感","C. 最喜欢这个姿势","D. 不喜欢从后面"]},
-  {q:"31. 传教士位时？",opts:["A. 希望被紧紧抱住","B. 想看着对方眼睛","C. 腿被抬高更深","D. 随便什么姿势"]},
-  {q:"32. 骑乘位时？",opts:["A. 喜欢自己掌控节奏","B. 想被对方从下顶上来","C. 边骑边被掐腰","D. 不太喜欢在上"]},
-  {q:"33. 更喜欢？",opts:["A. 被压在身下","B. 把对方压在身下","C. 互相轮流主导","D. 无所谓谁在上"]},
-  {q:"34. 做的时候被盯着眼睛？",opts:["A. 会害羞想躲","B. 超级亲密更兴奋","C. 必须对视才爽","D. 不喜欢对视"]},
-  {q:"35. 做爱过程中亲吻？",opts:["A. 不断亲嘴很想要","B. 只亲脖子/胸就好","C. 亲吻越激烈越好","D. 不喜欢边做边亲"]},
-  {q:"36. 轻度掐脖子（窒息play）？",opts:["A. 完全不能接受","B. 轻轻掐一下可以","C. 稍微用力很刺激","D. 必须到缺氧边缘才爽"]},
-  {q:"37. 被打屁股？",opts:["A. 轻轻拍就够","B. 打到发红才爽","C. 越用力越兴奋","D. 不喜欢被打"]},
-  {q:"38. 轻度捆绑（绳子/皮带）？",opts:["A. 不喜欢任何束缚","B. 手腕绑一下可以","C. 全身捆绑很期待","D. 只接受象征性捆绑"]},
-  {q:"39. 蜡油滴落皮肤？",opts:["A. 怕疼不想试","B. 温热感很刺激","C. 必须滴到敏感部位","D. 完全没兴趣"]},
-  {q:"40. 冰块 vs 热感刺激？",opts:["A. 更喜欢冰块凉感","B. 更喜欢热感温暖","C. 冰热交替最爽","D. 都不喜欢"]},
-  {q:"41. 对多人场景（幻想）？",opts:["A. 完全不能接受","B. 幻想可以现实不行","C. 轻度分享有兴趣","D. 多人一起很期待"]},
-  {q:"42. 被注视 vs 被占有？",opts:["A. 只想被一个人占有","B. 被很多人注视很刺激","C. 两者都想要","D. 都不喜欢"]},
-  {q:"43. 对NTR（被分享/被看）？",opts:["A. 完全排斥","B. 幻想有点兴奋","C. 轻度现实可以","D. 超级喜欢这种刺激"]},
-  {q:"44. 公开场合偷偷摸摸？",opts:["A. 太危险不想","B. 轻微刺激可以","C. 必须有风险才爽","D. 完全没兴趣"]},
-  {q:"45. 在车里/厕所/试衣间做？",opts:["A. 太尴尬不行","B. 刺激但怕被抓","C. 超级想试","D. 没感觉"]},
-  {q:"46. 被录像/拍照？",opts:["A. 完全不能接受","B. 只给自己看可以","C. 被对方留着很兴奋","D. 想被传播才爽"]},
-  {q:"47. 真实发生 vs 言语幻想？",opts:["A. 只停留在幻想","B. 轻度真实可以","C. 必须真实才满足","D. 随便都行"]},
-  {q:"48. 角色扮演深度？",opts:["A. 简单服装就好","B. 要台词和剧情","C. 完全沉浸式演到底","D. 不喜欢角色扮演"]},
-  {q:"49. 对方呻吟声？",opts:["A. 可爱娇喘最喜欢","B. 低沉性感很撩","C. 哭腔求饶最爽","D. 没特别偏好"]},
-  {q:"50. 对哭腔/求饶声？",opts:["A. 有点心软","B. 会更兴奋想欺负","C. 必须听到才满足","D. 不喜欢这种声音"]},
-  {q:"51. 对方高潮时声音？",opts:["A. 咬唇忍住很可爱","B. 放肆叫出来最棒","C. 哭着高潮最刺激","D. 声音无所谓"]},
-  {q:"52. 被射在里面？",opts:["A. 必须戴套","B. 幻想很爽现实怕","C. 超级满足想一直这样","D. 完全没感觉"]},
-  {q:"53. 内射后继续做？",opts:["A. 太敏感不行","B. 想试试连续感","C. 必须一直做到溢出来","D. 不喜欢继续"]},
-  {q:"54. 被射在哪个位置最喜欢？",opts:["A. 胸上/肚子上","B. 脸上很刺激","C. 嘴里/吞下去","D. 里面最满足"]},
-  {q:"55. 对精液的态度？",opts:["A. 完全不能接受","B. 可以涂抹玩","C. 吞咽很兴奋","D. 被射满才爽"]},
-  {q:"56. 安全套内射 vs 无套？",opts:["A. 必须戴套","B. 戴套内射也行","C. 无套感最真实","D. 无所谓"]},
-  {q:"57. 事后被抱着清理？",opts:["A. 超级温柔想要","B. 有点害羞但接受","C. 必须被舔干净才满足","D. 不喜欢事后玩"]},
-  {q:"58. 做完后被亲额头？",opts:["A. 很温暖很喜欢","B. 觉得太甜腻","C. 希望更粗暴一点","D. 无所谓"]},
-  {q:"59. 被夸“好棒”“真乖”？",opts:["A. 会害羞但开心","B. 超级有被驯服感","C. 必须一直夸才行","D. 没感觉"]},
-  {q:"60. 事后轻度羞辱（“刚刚那么浪”）？",opts:["A. 脸红想否认","B. 会更兴奋想再来","C. 必须重度羞辱才爽","D. 不喜欢被说"]},
-  {q:"61. 一次性很久很久，还是短时间多次？",opts:["A. 一次很久很满足","B. 短时间多次更爽","C. 一直做到天亮","D. 随便都行"]},
-  {q:"62. 被操到走不动路？",opts:["A. 怕疼不想","B. 有点期待","C. 必须这样才算完","D. 不喜欢太激烈"]},
-  {q:"63. 被抱起来边走边插？",opts:["A. 太难了吧","B. 超级有被占有感","C. 必须试一次","D. 没兴趣"]},
-  {q:"64. 被抵在墙上做？",opts:["A. 浪漫但不实用","B. 很刺激想试","C. 最喜欢这个场景","D. 不喜欢站着做"]},
-  {q:"65. 哪个场景最有感觉？",opts:["A. 床上最安全","B. 办公桌/厨房","C. 浴室湿身play","D. 随便哪里都行"]},
-  {q:"66. 冬天闷热被窝 vs 夏天汗湿黏腻？",opts:["A. 冬天温暖更喜欢","B. 夏天汗湿更色","C. 两者都爱","D. 没区别"]},
-  {q:"67. 对气味癖（原味）？",opts:["A. 完全不能接受","B. 轻微体味可以","C. 腋下/私处原味很兴奋","D. 必须闻才爽"]},
-  {q:"68. 对方穿你的衣服/内裤？",opts:["A. 觉得可爱","B. 瞬间兴奋想扑","C. 必须穿我的内衣才行","D. 没感觉"]},
-  {q:"69. 对方用你的丝袜/内裤自慰给你看？",opts:["A. 太羞耻不行","B. 超级刺激想看","C. 必须边看边玩","D. 不感兴趣"]},
-  {q:"70. 最后：你希望被怎么对待？",opts:["A. 温柔宠爱到融化","B. 激烈但有底线","C. 狠狠地、彻底地、毫无保留地弄坏","D. 随便怎么都行"]}
-  ];
+let currentQuestion = parseInt(localStorage.getItem('milu_current') || '0');
+let answers = JSON.parse(localStorage.getItem('milu_answers') || '[]');
+let currentQuestions = null;
 
-  let currentQuestion = parseInt(localStorage.getItem('milu_current') || '0');
-  let answers = JSON.parse(localStorage.getItem('milu_answers') || '[]');
-  if (answers.length !== questions.length) answers = new Array(questions.length).fill(null);
+function saveProgress() {
+  localStorage.setItem('milu_current', currentQuestion);
+  localStorage.setItem('milu_answers', JSON.stringify(answers));
+}
 
-  function saveProgress() {
-    localStorage.setItem('milu_current', currentQuestion);
-    localStorage.setItem('milu_answers', JSON.stringify(answers));
-  }
+function renderQuestion() {
+  if (currentQuestion >= currentQuestions.length) currentQuestion = currentQuestions.length - 1;
+  const q = currentQuestions[currentQuestion];
+  document.getElementById('qText').textContent = q.q;
 
-  function renderQuestion() {
-    if (currentQuestion >= questions.length) currentQuestion = questions.length - 1;
-    const q = questions[currentQuestion];
-    document.getElementById('qText').textContent = q.q;
+  const optsDiv = document.getElementById('qOptions');
+  optsDiv.innerHTML = '';
 
-    const optsDiv = document.getElementById('qOptions');
-    optsDiv.innerHTML = '';
-
-    q.opts.forEach((opt, idx) => {
-      const label = document.createElement('label');
-      const isChecked = answers[currentQuestion] === idx + 1;
-      label.innerHTML = `
-        <input type="radio" name="q\( {currentQuestion}" value=" \){idx+1}" ${isChecked ? 'checked' : ''}>
-        <span>${opt}</span>
-      `;
-      label.addEventListener('click', () => {
-        answers[currentQuestion] = idx + 1;
-        saveProgress();
-        updateProgress();
-        updateButtons();
-      });
-      optsDiv.appendChild(label);
+  q.opts.forEach((opt, idx) => {
+    const label = document.createElement('label');
+    const isChecked = answers[currentQuestion] === idx + 1;
+    label.innerHTML = `
+      <input type="radio" name="q\( {currentQuestion}" value=" \){idx+1}" ${isChecked ? 'checked' : ''}>
+      <span>${opt}</span>
+    `;
+    label.addEventListener('click', () => {
+      answers[currentQuestion] = idx + 1;
+      saveProgress();
+      updateProgress();
+      updateButtons();
     });
+    optsDiv.appendChild(label);
+  });
 
-    document.getElementById('currentQuestion').textContent = currentQuestion + 1;
-    updateProgress();
-    updateButtons();
+  document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+  updateProgress();
+  updateButtons();
+}
+
+function updateProgress() {
+  const progress = ((currentQuestion + 1) / currentQuestions.length) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+  document.getElementById('progressPercentage').textContent = Math.round(progress) + '%';
+}
+
+function updateButtons() {
+  document.getElementById('prevBtn').disabled = currentQuestion === 0;
+  document.getElementById('nextBtn').style.display = currentQuestion < currentQuestions.length - 1 ? 'block' : 'none';
+  document.getElementById('generateBtn').style.display = currentQuestion === currentQuestions.length - 1 ? 'block' : 'none';
+}
+
+function nextQuestion() {
+  if (currentQuestion < currentQuestions.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+}
+
+function resetTest() {
+  if (confirm("确定要清空所有进度重新开始吗？喵~")) {
+    localStorage.removeItem('milu_current');
+    localStorage.removeItem('milu_answers');
+    localStorage.removeItem('milu_gender');
+    currentQuestion = 0;
+    answers = new Array(currentQuestions.length).fill(null);
+    document.getElementById('quizPage').style.display = 'none';
+    document.getElementById('genderPage').style.display = 'block';
+  }
+}
+
+function generateRadar() {
+  if (answers.some(a => a === null)) {
+    alert("喵~ 还有题目没选完哦~ 请检查所有题目~");
+    return;
   }
 
-  function updateProgress() {
-    const progress = ((currentQuestion + 1) / questions.length) * 100;
-    document.getElementById('progressFill').style.width = progress + '%';
-    document.getElementById('progressPercentage').textContent = Math.round(progress) + '%';
-  }
+  document.getElementById('chartLoader').style.display = 'block';
 
-  function updateButtons() {
-    document.getElementById('prevBtn').disabled = currentQuestion === 0;
-    document.getElementById('nextBtn').style.display = currentQuestion < questions.length - 1 ? 'block' : 'none';
-    document.getElementById('generateBtn').style.display = currentQuestion === questions.length - 1 ? 'block' : 'none';
-  }
+  setTimeout(() => {
+    try {
+      const scores = new Array(dimensions.length).fill(0);
+      const counts = new Array(dimensions.length).fill(0);
 
-  function nextQuestion() {
-    if (currentQuestion < questions.length - 1) {
-      currentQuestion++;
-      renderQuestion();
-    }
-  }
-
-  function prevQuestion() {
-    if (currentQuestion > 0) {
-      currentQuestion--;
-      renderQuestion();
-    }
-  }
-
-  function resetTest() {
-    if (confirm("确定要清空所有进度重新开始吗？喵~")) {
-      localStorage.removeItem('milu_current');
-      localStorage.removeItem('milu_answers');
-      currentQuestion = 0;
-      answers = new Array(questions.length).fill(null);
-      renderQuestion();
-    }
-  }
-
-  function generateRadar() {
-    if (answers.some(a => a === null)) {
-      alert("喵~ 还有题目没选完哦~ 请检查所有题目~");
-      return;
-    }
-
-    document.getElementById('chartLoader').style.display = 'block';
-
-    setTimeout(() => {
-      try {
-        const scores = new Array(dimensions.length).fill(0);
-        const counts = new Array(dimensions.length).fill(0);
-
-        answers.forEach((val, i) => {
-          const contrib = questionContributions[i] || [];
-          contrib.forEach(idx => {
-            scores[idx] += val;
-            counts[idx]++;
-          });
+      answers.forEach((val, i) => {
+        const contrib = questionContributions[i] || [];
+        contrib.forEach(idx => {
+          scores[idx] += val;
+          counts[idx]++;
         });
+      });
 
-        const avgScores = scores.map((s, i) => counts[i] > 0 ? Number((s / counts[i]).toFixed(2)) : 1);
+      const avgScores = scores.map((s, i) => counts[i] > 0 ? Number((s / counts[i]).toFixed(2)) : 1);
 
-        const maxVal = Math.max(...avgScores);
-        const maxIdx = avgScores.indexOf(maxVal);
+      const maxVal = Math.max(...avgScores);
+      const maxIdx = avgScores.indexOf(maxVal);
 
-        document.getElementById('resultHeader').innerHTML = 
-          `你的最强倾向：<span style="color:var(--primary)">\( {dimensions[maxIdx]}</span> ( \){maxVal}/4.0) 喵~`;
+      document.getElementById('resultHeader').innerHTML = 
+        `你的最强倾向：<span style="color:var(--primary)">\( {dimensions[maxIdx]}</span> ( \){maxVal}/4.0) 喵~`;
 
-        const detailsDiv = document.getElementById('dimensionDetails');
-        detailsDiv.innerHTML = dimensions.map((dim, i) => `
-          <div class="dimension-item">
-            <div>${dim}</div>
-            <div style="color:${avgScores[i]>3?'var(--primary)':avgScores[i]>2?'var(--secondary)':'#888'}">
-              ${avgScores[i].toFixed(2)}
-            </div>
+      const detailsDiv = document.getElementById('dimensionDetails');
+      detailsDiv.innerHTML = dimensions.map((dim, i) => `
+        <div class="dimension-item">
+          <div>${dim}</div>
+          <div style="color:${avgScores[i]>3?'var(--primary)':avgScores[i]>2?'var(--secondary)':'#888'}">
+            ${avgScores[i].toFixed(2)}
           </div>
-        `).join('');
+        </div>
+      `).join('');
 
-        const ctx = document.getElementById('radarChart').getContext('2d');
-        new Chart(ctx, {
-          type: 'radar',
-          data: {
-            labels: dimensions,
-            datasets: [{
-              label: '倾向强度',
-              data: avgScores,
-              backgroundColor: 'rgba(255,105,180,0.15)',
-              borderColor: '#ff69b4',
-              pointBackgroundColor: '#4169e1',
-              pointBorderColor: '#fff',
-              borderWidth: 2
-            }]
+      const ctx = document.getElementById('radarChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: dimensions,
+          datasets: [{
+            label: '倾向强度',
+            data: avgScores,
+            backgroundColor: 'rgba(255,105,180,0.15)',
+            borderColor: '#ff69b4',
+            pointBackgroundColor: '#4169e1',
+            pointBorderColor: '#fff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scales: {
+            r: {
+              min: 1,
+              max: 4,
+              ticks: { display: false },
+              grid: { color: 'rgba(255,255,255,0.08)' },
+              angleLines: { color: 'rgba(255,255,255,0.08)' },
+              pointLabels: { color: '#aaa', font: { size: 11 } }
+            }
           },
-          options: {
-            scales: {
-              r: {
-                min: 1,
-                max: 4,
-                ticks: { display: false },
-                grid: { color: 'rgba(255,255,255,0.08)' },
-                angleLines: { color: 'rgba(255,255,255,0.08)' },
-                pointLabels: { color: '#aaa', font: { size: 11 } }
-              }
-            },
-            plugins: { legend: { display: false } }
-          }
-        });
+          plugins: { legend: { display: false } }
+        }
+      });
 
-        document.querySelector('.container').style.display = 'none';
-        document.getElementById('radarContainer').style.display = 'block';
-        document.getElementById('chartLoader').style.display = 'none';
-      } catch (e) {
-        console.error(e);
-        alert("生成雷达图时出现小问题喵~ 请刷新页面重试~");
-        document.getElementById('chartLoader').style.display = 'none';
-      }
-    }, 600);
-  }
+      document.getElementById('quizPage').style.display = 'none';
+      document.getElementById('radarContainer').style.display = 'block';
+      document.getElementById('chartLoader').style.display = 'none';
+    } catch (e) {
+      console.error(e);
+      alert("生成雷达图时出现小问题喵~ 请刷新页面重试~");
+      document.getElementById('chartLoader').style.display = 'none';
+    }
+  }, 600);
+}
 
-  // 初始化
+// 性别选择
+document.getElementById('maleBtn').onclick = () => {
+  currentQuestions = maleQuestions;
+  document.getElementById('genderPage').style.display = 'none';
+  document.getElementById('quizPage').style.display = 'block';
   renderQuestion();
+};
 
-  // 按钮绑定
-  document.getElementById('nextBtn').onclick = nextQuestion;
-  document.getElementById('prevBtn').onclick = prevQuestion;
-  document.getElementById('generateBtn').onclick = generateRadar;
+document.getElementById('femaleBtn').onclick = () => {
+  currentQuestions = femaleQuestions;
+  document.getElementById('genderPage').style.display = 'none';
+  document.getElementById('quizPage').style.display = 'block';
+  renderQuestion();
+};
+
+// 初始化按钮绑定
+document.getElementById('nextBtn').onclick = nextQuestion;
+document.getElementById('prevBtn').onclick = prevQuestion;
+document.getElementById('generateBtn').onclick = generateRadar;
 </script>
 </body>
 </html>
