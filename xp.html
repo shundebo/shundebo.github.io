@@ -13,6 +13,7 @@
     .select-btn{padding:20px;font-size:1.3rem;border:none;border-radius:12px;cursor:pointer;transition:all .3s;color:#fff}
     #mDomF{background:#1e90ff}#fDomM{background:#ff69b4}#mDomM{background:#4169e1}#fDomF{background:#c71585}
     #fSubM{background:#00bfff}#mSubF{background:#ff1493}#mSubM{background:#6495ed}#fSubF{background:#db7093}
+    #safeMode{background:#32cd32;color:#000;font-weight:bold}
     .select-btn:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(255,105,180,.6)}
     .progress-container{background:#222;height:8px;border-radius:4px;margin:15px 0;overflow:hidden}
     #progressFill{height:100%;width:0%;background:linear-gradient(90deg,#ff69b4,#1e90ff);transition:width .4s}
@@ -39,6 +40,7 @@
   </style>
 </head>
 <body>
+
 <div class="container" id="selectPage">
   <h1>xp测试 by shundebo</h1>
   <p style="font-size:1.3rem;margin:40px 0">请选择你的真实视角组合喵~（攻=你主动 / 受=你被动）</p>
@@ -51,11 +53,12 @@
     <button class="select-btn" id="mSubF">男受 · 女攻（你被女生操）</button>
     <button class="select-btn" id="mSubM">男受 · 男攻（你被男生操）</button>
     <button class="select-btn" id="fSubF">女受 · 女攻（你被女生操）</button>
+    <button class="select-btn" id="safeMode">安全模式 · 温和探索喵~</button>
   </div>
 </div>
 
 <div class="container" id="quizPage" style="display:none">
-  <h1>xp测试by shundebo - 72题重制</h1>
+  <h1>xp测试 by shundebo - 72题</h1>
   <div id="progressText">
     <span>第 <span id="currentQuestion">1</span> / 72 题</span>
     <span id="progressPercentage">1%</span>
@@ -892,23 +895,145 @@ const fSubFQuestions = [
   {q:"72. 被最终调教成果？", opts:["A. 你爱她","B. 你服从","C. 你叫主人","D. 你求她毁掉你"]}
 ];
 
+const safeQuestions = [
+  // 纯爱 (1-3)
+  {q:"1. 你最想和对方建立的感情深度是？", opts:["A. 普通恋人","B. 深情相守","C. 灵魂伴侣","D. 强烈而专属的占有"]},
+  {q:"2. 亲密结束后你最想对对方做什么？", opts:["A. 温柔拥抱","B. 亲吻额头","C. 轻声说爱你","D. 低语你永远属于我"]},
+  {q:"3. 你希望对方怎么看待你？", opts:["A. 可靠伴侣","B. 强势爱人","C. 值得信赖的主导者","D. 无法离开的绝对中心"]},
+
+  // 诱导 (4-6)
+  {q:"4. 你想怎么引导对方第一次尝试口交？", opts:["A. 温柔引导","B. 慢慢哄着试试","C. 带着命令的语气提议","D. 轻轻按住头部引导深入"]},
+  {q:"5. 让对方主动求欢时你最满足？", opts:["A. 害羞小声说想","B. 红着脸恳求","C. 跪下请求","D. 声音颤抖地强烈渴求"]},
+  {q:"6. 引导对方尝试后穴/前列腺玩法，你会？", opts:["A. 先充分询问","B. 用大量润滑慢慢进入","C. 坚定地命令尝试","D. 掌控节奏直到对方完全适应并沉沦"]},
+
+  // 情调 (7-9)
+  {q:"7. 你最喜欢的情调氛围？", opts:["A. 烛光音乐","B. 玫瑰花瓣","C. 昏暗暧昧灯光","D. 充满占有欲的私密空间"]},
+  {q:"8. 前戏你想持续多久？", opts:["A. 10分钟","B. 半小时","C. 一小时以上","D. 直到对方彻底融化在你手里"]},
+  {q:"9. 你希望对方穿什么最有情调？", opts:["A. 情趣内衣/内裤","B. 丝袜高跟","C. 全身赤裸","D. 只戴你的项圈和标记"]},
+
+  // 虚待 (10-12)
+  {q:"10. 表面温柔背后你的真实想法？", opts:["A. 真心温柔","B. 偶尔强势","C. 温柔是种策略","D. 温柔是为了让对方更深陷"]},
+  {q:"11. 事后你会怎么对待对方？", opts:["A. 真的关心","B. 轻声安慰","C. 假装特别心疼","D. 笑着提醒他刚才有多乖"]},
+  {q:"12. 你最喜欢虚伪到什么程度？", opts:["A. 基本不虚伪","B. 偶尔假温柔","C. 全程假装深情","D. 温柔到对方完全相信并依赖"]},
+
+  // 差辱 (13-15)
+  {q:"13. 你最想用什么词称呼对方？", opts:["A. 小可爱","B. 小宝贝","C. 小荡货","D. 我的专属宠物"]},
+  {q:"14. 言语调教时你希望对方反应？", opts:["A. 脸红否认","B. 更兴奋","C. 羞涩接受","D. 彻底沉迷你的声音"]},
+  {q:"15. 公开言语支配到什么程度最刺激？", opts:["A. 只在私下","B. 朋友小范围知道","C. 半公开场合","D. 在安全范围内让更多人察觉你的掌控"]},
+
+  // 征服 (16-18)
+  {q:"16. 你想征服对方哪一部分？", opts:["A. 身体","B. 心灵","C. 全部","D. 让他心甘情愿只属于你"]},
+  {q:"17. 征服过程中你最满足？", opts:["A. 对方慢慢接受","B. 对方轻微挣扎","C. 对方恳求你","D. 对方彻底臣服于你"]},
+  {q:"18. 最终征服的标志？", opts:["A. 对方说爱你","B. 对方听你的话","C. 对方叫你主人","D. 对方主动戴上你的项圈"]},
+
+  // 控制 (19-21)
+  {q:"19. 你想控制对方到什么程度？", opts:["A. 基本自由","B. 每天汇报","C. 完全知晓行踪","D. 生活每一部分都需要你的许可"]},
+  {q:"20. 控制对方穿衣？", opts:["A. 随便穿","B. 必须穿性感","C. 只准穿你选的","D. 永远穿你指定的情趣装或裸体"]},
+  {q:"21. 控制高潮？", opts:["A. 让对方自己决定","B. 你决定时间","C. 必须求你允许","D. 只有在你满意时才能释放"]},
+
+  // 强迫 (22-24)
+  {q:"22. 你最想主导对方尝试什么？", opts:["A. 第一次口交","B. 后穴/前列腺","C. 轻度捆绑","D. 完全交出身体控制权"]},
+  {q:"23. 主导时你希望对方？", opts:["A. 轻微反抗但接受","B. 羞涩服从","C. 完全顺从","D. 主动渴求更强烈的主导"]},
+  {q:"24. 主导后的后续？", opts:["A. 温柔安抚","B. 继续亲密","C. 轻声赞美","D. 再来一次更深的掌控"]},
+
+  // 保护 (25-27)
+  {q:"25. 你想怎么“保护”对方？", opts:["A. 真心保护","B. 占有式保护","C. 保护对方只属于你","D. 让对方世界只剩下你"]},
+  {q:"26. 别人接近对方时你会？", opts:["A. 生气但忍耐","B. 警告对方","C. 强势宣示主权","D. 让对方明白只有你能触碰"]},
+  {q:"27. 保护到极致是？", opts:["A. 给对方安全感","B. 限制外出","C. 用项圈象征归属","D. 让对方完全依赖你存在"]},
+
+  // 受虐 (28-30)
+  {q:"28. 你想让对方承受什么强度？", opts:["A. 轻微刺痛","B. 明显痛感","C. 痛到轻声哭喊","D. 痛并快乐着的极限边缘"]},
+  {q:"29. 对方承受时你最满足？", opts:["A. 对方忍耐","B. 对方轻叫","C. 对方恳求","D. 对方感谢你的给予"]},
+  {q:"30. 疼痛玩法极限？", opts:["A. 轻度SM","B. 中度鞭打","C. 滴蜡+轻电击","D. 留下美丽痕迹的强烈刺激"]},
+
+  // 屈辱 (31-33)
+  {q:"31. 你最想让对方做什么羞耻的事？", opts:["A. 叫你特别称呼","B. 跪着服侍","C. 在你面前自慰","D. 当着你的面承认自己有多想要"]},
+  {q:"32. 羞耻玩法到什么程度？", opts:["A. 私下而已","B. 亲密朋友知道","C. 半公开场合","D. 在安全范围内彻底暴露羞耻一面"]},
+  {q:"33. 对方羞耻后的反应最爽？", opts:["A. 脸红接受","B. 哭着服从","C. 彻底沉沦","D. 感谢你带来的羞耻快感"]},
+
+  // 臣服 (34-36)
+  {q:"34. 你想让对方臣服到什么地步？", opts:["A. 听话而已","B. 叫主人","C. 完全服从","D. 心甘情愿把一切交给你"]},
+  {q:"35. 臣服仪式你想？", opts:["A. 口头承诺","B. 戴项圈","C. 纹身标记","D. 永久象征归属的仪式"]},
+  {q:"36. 臣服后你会？", opts:["A. 温柔对待","B. 继续引导","C. 彻底掌控","D. 让对方永远沉浸在你的支配中"]},
+
+  // 服从 (37-39)
+  {q:"37. 你最想让对方服从什么命令？", opts:["A. 日常小事","B. 性爱指令","C. 公开示爱","D. 完全按照你的意志生活"]},
+  {q:"38. 对方不服从时你会？", opts:["A. 温柔说服","B. 轻微惩罚","C. 严厉教育","D. 用更强的主导让对方求饶"]},
+  {q:"39. 服从极限？", opts:["A. 基本服从","B. 绝对服从","C. 盲从","D. 连最私密的想法都听你的"]},
+
+  // 被迫 (40-42)
+  {q:"40. 你最想主导对方做什么？", opts:["A. 第一次亲密","B. 尝试新玩法","C. 被多人注视","D. 被永久标记归属"]},
+  {q:"41. 主导时你希望对方？", opts:["A. 反抗但接受","B. 哭着服从","C. 彻底顺从","D. 主动渴求更强烈"]},
+  {q:"42. 主导后的后续？", opts:["A. 安慰对方","B. 继续亲密","C. 羞辱赞美","D. 再来一次更深的支配"]},
+
+  // 叛逆 (43-45)
+  {q:"43. 对方叛逆时你最想？", opts:["A. 温柔沟通","B. 强势压制","C. 惩罚教育","D. 用支配让对方重新臣服"]},
+  {q:"44. 对方反抗命令时？", opts:["A. 让对方冷静","B. 口头警告","C. 立即惩罚","D. 强势纠正直到对方顺从"]},
+  {q:"45. 叛逆到极致你会？", opts:["A. 放手","B. 继续引导","C. 彻底掌控","D. 让对方明白无法逃离"]},
+
+  // 放纵 (46-48)
+  {q:"46. 你想让对方放纵到什么程度？", opts:["A. 偶尔放纵","B. 每天亲密","C. 24小时不停","D. 放纵到对方完全属于你"]},
+  {q:"47. 放纵时你最满足？", opts:["A. 对方主动","B. 对方恳求","C. 对方崩溃求你","D. 对方只为你而存在"]},
+  {q:"48. 放纵极限？", opts:["A. 正常范围","B. 过度亲密","C. 连续高强度","D. 直到对方身心都烙上你的印记"]},
+
+  // 暴露 (49-51)
+  {q:"49. 你想让对方暴露到什么程度？", opts:["A. 私下穿情趣","B. 半公开穿","C. 完全公开暴露","D. 在安全范围内被多人注视"]},
+  {q:"50. 暴露时你希望对方？", opts:["A. 害羞但接受","B. 兴奋颤抖","C. 哭着求饶","D. 感谢你带来的羞耻快感"]},
+  {q:"51. 暴露极限？", opts:["A. 室内","B. 私密场所","C. 半公开空间","D. 安全范围内的极限展示"]},
+
+  // 群体 (52-54)
+  {q:"52. 群体玩法你想？", opts:["A. 完全拒绝","B. 幻想而已","C. 轻度尝试","D. 在安全范围内多人注视或参与"]},
+  {q:"53. 对方被多人注视时你最满足？", opts:["A. 对方害羞","B. 对方兴奋","C. 对方恳求","D. 对方只看着你"]},
+  {q:"54. 群体规模？", opts:["A. 仅你一人","B. 2-3人注视","C. 小范围群体","D. 安全控制下的多人场景"]},
+
+  // 跨性 (55-57)
+  {q:"55. 你想让对方尝试跨性别玩法？", opts:["A. 不想","B. 幻想而已","C. 角色扮演","D. 穿异性服装并沉浸其中"]},
+  {q:"56. 跨性时你希望？", opts:["A. 对方害羞","B. 对方兴奋","C. 对方沉沦","D. 对方彻底享受新身份"]},
+  {q:"57. 跨性极限？", opts:["A. 简单扮演","B. 穿衣打扮","C. 深度角色","D. 完全沉浸的身份转换"]},
+
+  // 同性 (58-60)
+  {q:"58. 让对方和同性互动你想？", opts:["A. 完全拒绝","B. 幻想可以","C. 轻度尝试","D. 在你掌控下和同性亲密"]},
+  {q:"59. 对方和同性时你最满足？", opts:["A. 对方害羞","B. 对方主动","C. 对方沉沦","D. 对方只为你而做"]},
+  {q:"60. 同性玩法规模？", opts:["A. 1对1","B. 2-3人","C. 小群体","D. 你完全掌控的多人场景"]},
+
+  // 恋物 (61-63)
+  {q:"61. 你最想让对方恋什么物？", opts:["A. 正常恋物","B. 丝袜内裤","C. 体液标记","D. 你的专属物品"]},
+  {q:"62. 恋物玩法？", opts:["A. 轻度","B. 中度","C. 重度","D. 极端沉迷"]},
+  {q:"63. 恋物极限？", opts:["A. 收藏而已","B. 必须穿戴","C. 必须沾满你的痕迹","D. 成为对方生活的全部焦点"]},
+
+  // NTR (64-66)
+  {q:"64. NTR玩法你想？", opts:["A. 完全排斥","B. 幻想兴奋","C. 轻度角色扮演","D. 在你掌控下的假想NTR"]},
+  {q:"65. 对方被NTR时你最满足？", opts:["A. 对方反抗","B. 对方羞涩","C. 对方享受","D. 对方最终只回到你身边"]},
+  {q:"66. NTR规模？", opts:["A. 仅幻想","B. 角色扮演","C. 轻度现实","D. 完全由你导演的场景"]},
+
+  // 暴虐 (67-69)
+  {q:"67. 你想暴虐对方到什么程度？", opts:["A. 轻度SM","B. 中度鞭打","C. 滴蜡+轻电击","D. 留下美丽痕迹的强烈刺激"]},
+  {q:"68. 暴虐时你希望对方？", opts:["A. 忍痛","B. 轻叫","C. 恳求","D. 感谢你的给予"]},
+  {q:"69. 暴虐极限？", opts:["A. 短暂痕迹","B. 短期红肿","C. 持久但可恢复标记","D. 美丽而专属的永久印记"]},
+
+  // 调教 (70-72)
+  {q:"70. 你想调教对方成什么？", opts:["A. 听话恋人","B. 专属性伴","C. 完全服从的宠物","D. 只为你而活的专属玩物"]},
+  {q:"71. 调教手段？", opts:["A. 温柔引导","B. 惩罚教育","C. 强烈主导","D. 身心双重深度掌控"]},
+  {q:"72. 最终调教成果？", opts:["A. 对方爱你","B. 对方服从你","C. 对方叫你主人","D. 对方心甘情愿把一切交给你"]}
+];
+  
 let currentQuestions = null;
-let currentQuestion = parseInt(localStorage.getItem('milu_current') || '0');
-let answers = JSON.parse(localStorage.getItem('milu_answers') || '[]');
+let currentQuestion = parseInt(localStorage.getItem('xp_current') || '0');
+let answers = JSON.parse(localStorage.getItem('xp_answers') || '[]');
 
 function saveProgress() {
-  localStorage.setItem('milu_current', currentQuestion);
-  localStorage.setItem('milu_answers', JSON.stringify(answers));
+  localStorage.setItem('xp_current', currentQuestion);
+  localStorage.setItem('xp_answers', JSON.stringify(answers));
 }
 
 function renderQuestion() {
   if (!currentQuestions) return;
   if (currentQuestion >= currentQuestions.length) currentQuestion = currentQuestions.length - 1;
   const q = currentQuestions[currentQuestion];
-  document.getElementById('qText').textContent = q.q;
+  document.getElementById('qText').textContent = q?.q || "题目加载中...";
   const optsDiv = document.getElementById('qOptions');
   optsDiv.innerHTML = '';
-  q.opts.forEach((opt, idx) => {
+  (q?.opts || []).forEach((opt, idx) => {
     const label = document.createElement('label');
     const isChecked = answers[currentQuestion] === idx + 1;
     label.innerHTML = `
@@ -958,9 +1083,9 @@ function prevQuestion() {
 
 function resetTest() {
   if (confirm("确定要清空所有进度重新开始吗？喵~")) {
-    localStorage.removeItem('milu_current');
-    localStorage.removeItem('milu_answers');
-    localStorage.removeItem('milu_type');
+    localStorage.removeItem('xp_current');
+    localStorage.removeItem('xp_answers');
+    localStorage.removeItem('xp_type');
     currentQuestion = 0;
     answers = [];
     currentQuestions = null;
@@ -969,6 +1094,9 @@ function resetTest() {
   }
 }
 
+// ───────────────────────────────────────────────
+//  生成雷达图逻辑（保持原样）
+// ───────────────────────────────────────────────
 function generateRadar() {
   if (answers.length < currentQuestions.length || answers.some(a => a == null)) {
     alert("喵~ 还有题目没选完哦~ 请检查所有72题~");
@@ -1038,15 +1166,18 @@ function generateRadar() {
   }, 600);
 }
 
-// 视角绑定
-document.getElementById('mDomF').onclick = () => { currentQuestions = mDomFQuestions; localStorage.setItem('milu_type', 'mDomF'); startQuiz(); };
-document.getElementById('fDomM').onclick = () => { currentQuestions = fDomMQuestions; localStorage.setItem('milu_type', 'fDomM'); startQuiz(); };
-document.getElementById('mDomM').onclick = () => { currentQuestions = mDomMQuestions; localStorage.setItem('milu_type', 'mDomM'); startQuiz(); };
-document.getElementById('fDomF').onclick = () => { currentQuestions = fDomFQuestions; localStorage.setItem('milu_type', 'fDomF'); startQuiz(); };
-document.getElementById('fSubM').onclick = () => { currentQuestions = fSubMQuestions; localStorage.setItem('milu_type', 'fSubM'); startQuiz(); };
-document.getElementById('mSubF').onclick = () => { currentQuestions = mSubFQuestions; localStorage.setItem('milu_type', 'mSubF'); startQuiz(); };
-document.getElementById('mSubM').onclick = () => { currentQuestions = mSubMQuestions; localStorage.setItem('milu_type', 'mSubM'); startQuiz(); };
-document.getElementById('fSubF').onclick = () => { currentQuestions = fSubFQuestions; localStorage.setItem('milu_type', 'fSubF'); startQuiz(); };
+// ───────────────────────────────────────────────
+//  视角绑定（新增安全模式）
+// ───────────────────────────────────────────────
+document.getElementById('mDomF').onclick = () => { currentQuestions = mDomFQuestions; localStorage.setItem('xp_type', 'mDomF'); startQuiz(); };
+document.getElementById('fDomM').onclick = () => { currentQuestions = fDomMQuestions; localStorage.setItem('xp_type', 'fDomM'); startQuiz(); };
+document.getElementById('mDomM').onclick = () => { currentQuestions = mDomMQuestions; localStorage.setItem('xp_type', 'mDomM'); startQuiz(); };
+document.getElementById('fDomF').onclick = () => { currentQuestions = fDomFQuestions; localStorage.setItem('xp_type', 'fDomF'); startQuiz(); };
+document.getElementById('fSubM').onclick = () => { currentQuestions = fSubMQuestions; localStorage.setItem('xp_type', 'fSubM'); startQuiz(); };
+document.getElementById('mSubF').onclick = () => { currentQuestions = mSubFQuestions; localStorage.setItem('xp_type', 'mSubF'); startQuiz(); };
+document.getElementById('mSubM').onclick = () => { currentQuestions = mSubMQuestions; localStorage.setItem('xp_type', 'mSubM'); startQuiz(); };
+document.getElementById('fSubF').onclick = () => { currentQuestions = fSubFQuestions; localStorage.setItem('xp_type', 'fSubF'); startQuiz(); };
+document.getElementById('safeMode').onclick = () => { currentQuestions = safeQuestions; localStorage.setItem('xp_type', 'safe'); startQuiz(); };
 
 function startQuiz() {
   document.getElementById('selectPage').style.display = 'none';
@@ -1057,8 +1188,8 @@ function startQuiz() {
 }
 
 // 恢复上次视角
-if (localStorage.getItem('milu_type')) {
-  const type = localStorage.getItem('milu_type');
+if (localStorage.getItem('xp_type')) {
+  const type = localStorage.getItem('xp_type');
   const map = {
     mDomF: mDomFQuestions,
     fDomM: fDomMQuestions,
@@ -1067,7 +1198,8 @@ if (localStorage.getItem('milu_type')) {
     fSubM: fSubMQuestions,
     mSubF: mSubFQuestions,
     mSubM: mSubMQuestions,
-    fSubF: fSubFQuestions
+    fSubF: fSubFQuestions,
+    safe:   safeQuestions
   };
   currentQuestions = map[type];
   if (currentQuestions && currentQuestions.length === 72) {
